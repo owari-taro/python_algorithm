@@ -1,5 +1,13 @@
+#TODO:write unittest
+# check variable to avoid inifinte loop
+def check_int()
+
+
 def simple_gcd(a: int, b: int) -> int:
     """最大公約数を計算する"""
+    if type(a)!=int or type(b)==int or a<0 or b<0:
+        raise ValueEror("both input must be positive integer")
+    
     if a < b:
         a, b = b, a
     x = b
@@ -10,6 +18,8 @@ def simple_gcd(a: int, b: int) -> int:
             print("the answer is {}".format(x))
             return x
         x = x-1
+
+def 
 
 
 if __name__ == "__main__":
