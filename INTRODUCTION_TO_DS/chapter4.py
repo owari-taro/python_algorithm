@@ -3,6 +3,8 @@ from typing import List
 import time
 from collections import Callable
 import random
+from heapq import merge
+
 
 def merge_arrays(left: List, right: List = []) -> List:
     """wargning:both arguments are  sorted in advance"""
@@ -44,7 +46,7 @@ def merge_sort2(array: List) -> List:
 def quick_sort(array: List) -> List:
     if array == []:
         return array
-    pivot = random.choice(array)#"""array[-1]
+    pivot = random.choice(array)  # """array[-1]
     left = []
     right = []
     pivots = []
@@ -58,7 +60,7 @@ def quick_sort(array: List) -> List:
     return quick_sort(left)+pivots+quick_sort(right)
 
 
-def performance(method: Callable, data: List, num=3; int):
+def performance(method: Callable, data: List, num: int = 3):
     s = time.time()
     for i in range(num):
         for v in data:
@@ -67,5 +69,31 @@ def performance(method: Callable, data: List, num=3; int):
     return e-s
 
 
+def merge_sort3(array: List) -> List:
+    """merge sort using heapq beloging to standard library"""
+    if len(array) <= 1:
+        return array
+    mid_idx = len(array)//2
+    left = array[:mid_idx]
+    right = array[mid_idx:]
+    return list(merge(merge_sort3(left), merge_sort3(right)))
+
+
+def check_is_sorted(array: List) -> bool:
+    if len(array) <= 1:
+        return True
+    tmp = array[0]
+    for i in range(1, len(array)):
+        if tmp > array[i]:
+            return False
+        else:
+            tmp = array[i]
+    return True
+
+
 if __name__ == "__main__":
-    print("test")
+    tmp = [int(random.uniform(1, 400)) for _ in range(100)]
+    print(tmp)
+    sorted=merge_sort3(tmp)
+    print(sorted)
+    print(check_is_sorted(sorted))
