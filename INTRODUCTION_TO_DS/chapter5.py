@@ -12,9 +12,10 @@ class Node:
     """class for binary search tree"""
 
     def __init__(self, value):
+        #int or float?
         self.value = value
-        self.left:Node = None
-        self.right:Node = None
+        self.left: Node = None
+        self.right: Node = None
 
     def __str__(self):
         left = f"[{self.left.value}]" if self.left else "[]"
@@ -49,5 +50,3 @@ class BinarySearchTree:
                 direction = "right"
                 node = p.right
         return p, direction
-
-
