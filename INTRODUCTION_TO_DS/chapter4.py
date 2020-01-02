@@ -2,7 +2,7 @@
 from typing import List
 import time
 from collections import Callable
-
+import random
 
 def merge_arrays(left: List, right: List = []) -> List:
     """wargning:both arguments are  sorted in advance"""
@@ -44,14 +44,14 @@ def merge_sort2(array: List) -> List:
 def quick_sort(array: List) -> List:
     if array == []:
         return array
-    p = array[-1]
+    pivot = random.choice(array)#"""array[-1]
     left = []
     right = []
     pivots = []
     for v in array:
-        if v < p:
+        if v < pivot:
             left.append(v)
-        elif v == p:
+        elif v == pivot:
             pivots.append(v)
         else:
             right.append(v)
