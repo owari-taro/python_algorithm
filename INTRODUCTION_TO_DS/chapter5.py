@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 import heapq
 
 
@@ -62,8 +62,39 @@ def heap_sort(array: List) -> List:
     return [heapq.heappop(heap)]
 
 
+class HashTable:
+    def __init__(self, table_size: int = 100):
+        self.data: List[List] = [[] for _ in range(table_size)]
+        self.n: int = table_size
+
+    def get_hash(self, v) -> int:
+        return hash(v) % self.n
+
+    def search(self, key) -> Tuple:
+        i: int = self.get_hash(key)
+        for j, v in enumerate(self.data[i]):
+            if v[0] == key:
+                return(i, j)
+        return (i, -1)
+
+    def set(self, key, value) -> None:
+        i, j = self.search(key)
+        if j != -1:
+            self.data[i][j][1] = value
+        else:
+            self.data[i].append([key, value])
+
+    def get(self, key):
+        i, j = self.search(key)
+        if j != -1:
+            return self.data[i][j][1]
+        raise KeyError(f"{key} sas not found in this hash table")
+
+
 if __name__ == "__main__":
     import random
     test = [random.randint(0, 100) for i in range(15)]
     heap_sort(test)
-    print("")
+    my_hash_table = HashTable()
+    my_hash_table.set("taro", 123123)
+    print(my_hash_table.get("taro"))
