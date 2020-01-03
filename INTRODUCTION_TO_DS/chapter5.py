@@ -1,4 +1,5 @@
 from typing import List
+import heapq
 
 
 def linear_search(array: List, target: int) -> bool:
@@ -12,7 +13,7 @@ class Node:
     """class for binary search tree"""
 
     def __init__(self, value):
-        #int or float?
+        # int or float?
         self.value = value
         self.left: Node = None
         self.right: Node = None
@@ -50,3 +51,19 @@ class BinarySearchTree:
                 direction = "right"
                 node = p.right
         return p, direction
+
+
+def heap_sort(array: List) -> List:
+    heap = []
+    for v in array:
+        heapq.heappush(heap, v)
+    print(heap)
+    print("########")
+    return [heapq.heappop(heap)]
+
+
+if __name__ == "__main__":
+    import random
+    test = [random.randint(0, 100) for i in range(15)]
+    heap_sort(test)
+    print("")
