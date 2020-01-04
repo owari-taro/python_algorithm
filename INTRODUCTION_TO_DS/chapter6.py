@@ -35,9 +35,25 @@ def breadth_first_search(start: int, W: List[List[int]]) -> Set:
     return visited
 
 
+def depth_fist_search(start: int, W: List[List[int]]) -> Set:
+    work_stack = []
+    visited: Set[int] = set()
+    work_stack.append(start)
+    visited.add(start)
+    while work_stack:
+        here = work_stack.pop()
+        for i, node in enumerate(W[here]):
+            if node == 0:
+                continue
+            if i not in visited:
+                visited.add(i)
+                work_stack.append(i)
+
+    return visited
+
 if __name__ == "__main__":
     n = 150
     m = 30
     graph, edge = generate_graph(n, m)
-    print(breadth_first_search(3,graph))
-    
+    print(breadth_first_search(3, graph))
+    print(depth_fist_search(3,graph))
