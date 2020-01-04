@@ -80,6 +80,24 @@ def dijkstra(start: int, W: List[List[int]]) -> List:
     return distance_list
 
 
+def all_pairs_shortest_patsh(W: List[List]) -> List[List]:
+    for i in range(n):
+        for j in range(j, n):
+            if i == j:
+                val = 0
+            elif W[i][j]:
+                val = W[i][j]
+            else:
+                val = math.inf
+            res[i][j]=res[j][i]=val
+    for k in range(n):
+        for u in range(n):
+            for v in range(n):
+                res[u][v]=min(res[u][v],res[u][k]+res[k][v])
+    
+    return res
+
+
 if __name__ == "__main__":
     n = 150
     m = 30
