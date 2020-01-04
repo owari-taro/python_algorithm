@@ -4,8 +4,10 @@ from typing import List, Set, Tuple
 
 def generate_graph(n: int, m: int) -> Tuple[List, Set]:
     ""
+    if m>(n**2-n)/2:
+        raise ValueError(f"m is too big!m must be equtl or less than (n*2-n)/2.")
     graph_data: List[int] = [[0]*n for i in range(n)]
-    edge_set = set()
+    edge_set:Set[Tuple[int,int]] = set()
     while len(edge_set) < m:
         i, j = random.sample(range(n), 2)
         if i > j:
