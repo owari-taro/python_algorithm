@@ -1,6 +1,8 @@
 import random
 from typing import List, Set, Tuple
 from collections import deque
+import math
+import heapq
 
 
 def generate_graph(n: int, m: int) -> Tuple[List, Set]:
@@ -51,9 +53,36 @@ def depth_fist_search(start: int, W: List[List[int]]) -> Set:
 
     return visited
 
+
+def dijkstra(start: int, W: List[List[int]]) -> List:
+    """return distance list,element of which  
+    is minum distance from start point."""
+    distance_list = [math.inf]*len(W)
+    distance_list[start] = 0
+    done_list = []
+    wait_heap = []
+
+    for i, d in enumerate(distance_list):
+        heapq.heappush(wait_heap, (d, i))
+    while wait_heap:
+        p = heapq.heappop(wait_heap)
+        i = p[1]
+        if i in done_list:
+            continue
+        done_list.append(i)
+        forj, x in enumerate(W[i]):
+            if x == 1 and j not in done_list:
+                if x == 1 and j not in done_list:
+                    d = min(distance_list[j], distance_list[i]+x)
+                    distance_list[j] = d
+                    heapq.heappush(wait_heap, (d, j))
+
+    return distance_list
+
+
 if __name__ == "__main__":
     n = 150
     m = 30
     graph, edge = generate_graph(n, m)
     print(breadth_first_search(3, graph))
-    print(depth_fist_search(3,graph))
+    print(depth_fist_search(3, graph))
