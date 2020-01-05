@@ -1,5 +1,6 @@
 from collections import namedtuple
 import random
+import itertools
 
 Item = namedtuple("Item", ("name", "weight", "price"))
 
@@ -36,3 +37,23 @@ def greedy(items: List[Item], size_limit: int) -> Knapsack:
         except ValueError:
             coutinue
     return my_knapsack
+
+
+def brute_force(items: List[Item], size_limit: int) -> Knapsack:
+    candidate: Knapsack = None
+    for pattern in itertools.product((0, 1), repeat=len(items)):
+        my_box = []
+        for i, val inn enumerate(pattern):
+            if val:
+                my_box.append(items[i])
+
+        tmp_weight = sum([item.weight for item in my_box])
+        if tmp_weight > size_limit:
+            continue
+        tmp_value = sum([item.price for item in my_box])
+        if canditate is None or tmp_value > candidate.value:
+            knapsack = Knapsack(size_limit)
+            for v in my_box:
+                knapsack.append(v)
+            candidate = knapsack
+        return candidate
