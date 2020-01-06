@@ -97,3 +97,5 @@ if __name__ == "__main__":
     sorted=merge_sort3(tmp)
     print(sorted)
     print(check_is_sorted(sorted))
+    hash
+    id

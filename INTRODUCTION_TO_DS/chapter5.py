@@ -97,4 +97,5 @@ if __name__ == "__main__":
     heap_sort(test)
     my_hash_table = HashTable()
     my_hash_table.set("taro", 123123)
-    print(my_hash_table.get("taro"))
+    
+    

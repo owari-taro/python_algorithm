@@ -89,13 +89,13 @@ def all_pairs_shortest_patsh(W: List[List]) -> List[List]:
                 val = W[i][j]
             else:
                 val = math.inf
-            res[i][j]=res[j][i]=val
+            res[i][j] = res[j][i] = val
     for k in range(n):
         for u in range(n):
             for v in range(n):
-                res[u][v]=min(res[u][v],res[u][k]+res[k][v])
-    
-    return res
+                res[u][v] = min(res[u][v], res[u][k]+res[k][v])
+
+    .return res
 
 
 if __name__ == "__main__":
