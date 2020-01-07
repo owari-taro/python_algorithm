@@ -23,3 +23,12 @@ def random_div(n: int, repeat: int = 10) -> str:
         if n % d == 0:
             return "composite"
         return "probably prime"
+
+
+def fermat_check(n: int) -> int:
+    """if retur is 0,then n is a prime number ,else n is composite nuber"""
+    cnt = 0
+    for a in range(2, n):
+        if pow(a, n-1, n) != 1:
+            cnt += 1
+    return cnt
