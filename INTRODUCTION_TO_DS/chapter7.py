@@ -35,7 +35,7 @@ def greedy(items: List[Item], size_limit: int) -> Knapsack:
         try:
             my_knapsack.append(v)
         except ValueError:
-            coutinue
+            continue
     return my_knapsack
 
 
@@ -59,6 +59,29 @@ def brute_force(items: List[Item], size_limit: int) -> Knapsack:
         return candidate
 
 
+def dp(items: List[Item], size_limit: int) -> Knapsack:
+    n = len(items)
+    table = [[0]*(size_limit+1) for i in range(n+1)]
+    flag = [[False]*(size_limit+1) for i in range(n+1)]
 
-
-
+    for i in range(1, n+1):
+        target = items[i-1]
+        w = target.weight
+        for j in range(1, size_limit+1):
+            yellow = table[i-1][j]
+            table[i][j] = yellow
+            if w > j:
+                continue
+            pink = table[i-1][j-w]
+            include_this = target.price+pink
+            table[i][j] = max(yellow, include_this)
+            flag[i][j] = include_this > yellow
+    i = n
+    j = size_limit
+    knapsack = Knapsack(size_limit)
+    while i > 0 and j > 0:
+        if flag[i][j]:
+            knapsack.append(itmes[i-1])
+            j -= items[i-1].weight
+        i -= 1
+    return knapsack
