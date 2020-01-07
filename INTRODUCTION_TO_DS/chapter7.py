@@ -43,7 +43,7 @@ def brute_force(items: List[Item], size_limit: int) -> Knapsack:
     candidate: Knapsack = None
     for pattern in itertools.product((0, 1), repeat=len(items)):
         my_box = []
-        for i, val inn enumerate(pattern):
+        for i, val in enumerate(pattern):
             if val:
                 my_box.append(items[i])
 
@@ -57,3 +57,8 @@ def brute_force(items: List[Item], size_limit: int) -> Knapsack:
                 knapsack.append(v)
             candidate = knapsack
         return candidate
+
+
+
+
+
