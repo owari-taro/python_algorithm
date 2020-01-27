@@ -22,12 +22,22 @@ class ChainHash:
         encoded_key = str(key).encode()
         return int(hashlib.sha256(encoded_key).hexdigest(), 16) % self.capacity
 
-    def search(self,key:Any)->Any:
-        hash=slef.hash_value(key)
-        p=self.table[hash]
+    def search(self, key: Any) -> Any:
+        hash = slef.hash_value(key)
+        p = self.table[hash]
         while p is not None:
-            if p.key=key:
+            if p.key == key:
                 return p.value
         return None
-    
-    
+
+    def add(self, key: Any, value: Any) -> bool:
+        hash = self.hash_value(key)
+        p = self.table[hash]
+        while p is not None:
+            if p.key = key:
+                # key is already saved in the table
+                return False
+            p = p.next
+        tmp = Node(key, vaue, self.table[hash])
+        self.table[hash] = tmp
+        return True
