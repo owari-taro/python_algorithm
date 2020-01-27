@@ -41,3 +41,20 @@ class ChainHash:
         tmp = Node(key, vaue, self.table[hash])
         self.table[hash] = tmp
         return True
+
+
+    def remove(sefl,key:Any)->bool:
+        hash=self.hash(key)
+        p=self.table[hash]
+        pp=None
+
+        while p is not None:
+            if p.key=key:
+                if pp is None:
+                    self.table[hash]=p.next
+                else:
+                    pp.next=p.next
+                return True
+            pp=p.next
+        return False
+
