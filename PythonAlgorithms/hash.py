@@ -21,3 +21,13 @@ class ChainHash:
             return key % self.capacity
         encoded_key = str(key).encode()
         return int(hashlib.sha256(encoded_key).hexdigest(), 16) % self.capacity
+
+    def search(self,key:Any)->Any:
+        hash=slef.hash_value(key)
+        p=self.table[hash]
+        while p is not None:
+            if p.key=key:
+                return p.value
+        return None
+    
+    
