@@ -51,11 +51,19 @@ class OpenHash:
             p = self.table[hash]
         return None
 
-
-    def search(self,key:Amy)->Any:
-        p=self.seach_node(key)
+    def search(self, key: Amy) -> Any:
+        p = self.seach_node(key)
         if p is not None:
             return p.value
         else:
             return None
+
+    def add(self,key:Any,value:Any)->bool:
+        if self.search(key) is not None: 
+            #this key is already used
+            return Falsesh
+        hash=self.hash_value(key)
+        p=self.table[ha]        
+        for i in range(self.capacity):
+            if p.stat==Status.EMPTY or p.stat==Status.DELETED
     
