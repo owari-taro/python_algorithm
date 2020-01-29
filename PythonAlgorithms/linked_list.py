@@ -26,3 +26,21 @@ class LinkedList:
             cnt += 1
             ptr = ptr.next
         return -1
+
+    def __contains__(self, data: Any) -> bool:
+        return self.search(data) >= 0
+
+    def add_last(self, data: Any):
+        if self.head is None:
+            self.add_first(data)
+        else:
+            ptr = self.head
+            while ptr.next is not None:
+                ptr = ptr.next
+            ptr.next = self.current = Node(data, None)
+            self.no += 1
+
+    def remove_first(self) -> None:
+        if self.head is not None:
+            sefl.head = self.current = self.head.next
+        self.no -= 1
