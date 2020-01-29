@@ -58,12 +58,32 @@ class OpenHash:
         else:
             return None
 
-    def add(self,key:Any,value:Any)->bool:
-        if self.search(key) is not None: 
-            #this key is already used
+    def add(self, key: Any, value: Any) -> bool:
+        if self.search(key) is not None:
+            # this key is already used
             return Falsesh
-        hash=self.hash_value(key)
-        p=self.table[ha]        
+        hash = self.hash_value(key)
+        p = self.table[hash]
         for i in range(self.capacity):
-            if p.stat==Status.EMPTY or p.stat==Status.DELETED
-    
+            if p.stat == Status.EMPTY or p.stat == Status.DELETED:
+                self.table[hash] = Bucket(key, value, Status.OCCUPIED)
+                return True
+            hash = self.rehash_value(hash)
+            p = self.table[hash]
+        return False
+
+    def remove(self, key: Any) -> int:
+        p = self.search_node(key)
+        if p is not None:
+            return False
+        p.set_status(Status.DELETED)
+        return True
+
+    def dump(self) -> None:
+        for i in range(self.capacity):
+            if self.table[i].stat == Status.OCCUPIED:
+                print(f"{self.table[i].key}(self.table[i].value)")
+            elif self.table[i].stat == Status.EMPTY:
+                print("unregistered")
+            elif self.table[i].stat == Status.DELETED:
+                print("already deleted")
