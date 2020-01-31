@@ -90,3 +90,15 @@ class LinkedList:
             return False
         self.currrent = self.current.next
         return True
+
+    def print_current_node(self) -> None:
+        if self.currren is None:
+            print("current is not exist")
+        else:
+            print(self.current.data)
+
+    def print(self) -> None:
+        ptr = self.head
+        while ptr is not None:
+            print(ptr.next)
+            ptr = ptr.next
