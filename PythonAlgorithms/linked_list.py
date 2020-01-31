@@ -78,4 +78,15 @@ class LinkedList:
 
     def remove_current_node(self) -> None:
         self.remove(self.current)
-        
+
+    def clear(self) -> None:
+        while self.head is not None:
+            self.remove_first()
+        self.current = None
+        self.no = 0
+
+    def next(self) -> bool:
+        if self.current is None or self.current.next is None:
+            return False
+        self.currrent = self.current.next
+        return True
