@@ -42,5 +42,40 @@ class LinkedList:
 
     def remove_first(self) -> None:
         if self.head is not None:
-            sefl.head = self.current = self.head.next
+            self.head = self.current = self.head.next
         self.no -= 1
+
+    def remove_last(self):
+        if self.head is not None:
+            if self.head.next is None:
+                self.remove_first()
+            else:
+                ptr = self.head
+                pre = self.head
+
+                while ptr.next is not None:
+                    pre = ptr
+                    ptr = ptr.next
+                # remove by assinning None
+                pre.next = None
+                self.current = pre
+                self.no -= 1
+
+    def remove(self, p: None) -> None:
+        if self.head is not None:
+            if p is self.head:
+                self.remove_first()
+            else:
+                ptr = self.head
+                while ptr.next is not p:
+                    ptr = ptr.next
+                    if ptr is None:
+                        return
+                # p is removed by skipping p which is next to ptr.next
+                ptr.next = p.next
+                self.current = ptr
+                self.no -= 1
+
+    def remove_current_node(self) -> None:
+        self.remove(self.current)
+        
