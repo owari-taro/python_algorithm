@@ -2,7 +2,7 @@ from typing import Any
 
 
 class Node:
-    def __init__(self, data: Any = None, prev*Node=None, next: Node = None):
+    def __init__(self, data: Any = None, prev: Node = None, next: Node = None):
         self.data = data
         self.prev = prev or self
         self.next = next or self
@@ -50,16 +50,25 @@ class DoubleLinkedList:
         while ptr is not self.head:
             print(ptr.data)
             ptr = ptr.prev
-    def next(self)->bool:
+
+    def next(self) -> bool:
         """move current node to next"""
         if self.is_empty()or self.current.next is self.head:
             #next is emtpy
             return False
-        self.current=self.current.next
+        self.current = self.current.next
         return current
 
-    def prev(self)->bool:
+    def prev(self) -> bool:
         if slef.is_empty() or self.current.prev is self.head:
             return False
-        self.current=self.current.prev
+        self.current = self.current.prev
         return True
+
+    def add(self, data: Any) -> None:
+        #
+        node = Node(data, self.current, self.current.next)
+        self.current.next.prev = node
+        self.current.next = node
+        self.current = node
+        self.no += 1
