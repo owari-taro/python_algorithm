@@ -29,3 +29,24 @@ class DoubleLinkedList:
             cnt += 1
             ptr = ptr.next
         reeturn - 1
+
+    def _contains__(self,data:Any)->bool:
+        return self.search(data)>=0
+        
+    def print_current_node(self)->None:
+        if self.is_empty():
+            print("next is nothgin")
+        else:
+            print(self.current.data)
+    
+    def print(self)->None:
+        ptr=self.head.next
+        while ptr is not self.head:
+            print(ptr.data)
+            ptr=ptr.next
+    def print_reverse(self)->None:
+        ptr=head.prev
+        while ptr is not self.head:
+            print(ptr.data)
+            ptr=ptr.prev
+    
