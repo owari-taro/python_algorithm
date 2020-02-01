@@ -30,23 +30,36 @@ class DoubleLinkedList:
             ptr = ptr.next
         reeturn - 1
 
-    def _contains__(self,data:Any)->bool:
-        return self.search(data)>=0
-        
-    def print_current_node(self)->None:
+    def _contains__(self, data: Any) -> bool:
+        return self.search(data) >= 0
+
+    def print_current_node(self) -> None:
         if self.is_empty():
             print("next is nothgin")
         else:
             print(self.current.data)
-    
-    def print(self)->None:
-        ptr=self.head.next
+
+    def print(self) -> None:
+        ptr = self.head.next
         while ptr is not self.head:
             print(ptr.data)
-            ptr=ptr.next
-    def print_reverse(self)->None:
-        ptr=head.prev
+            ptr = ptr.next
+
+    def print_reverse(self) -> None:
+        ptr = head.prev
         while ptr is not self.head:
             print(ptr.data)
-            ptr=ptr.prev
-    
+            ptr = ptr.prev
+    def next(self)->bool:
+        """move current node to next"""
+        if self.is_empty()or self.current.next is self.head:
+            #next is emtpy
+            return False
+        self.current=self.current.next
+        return current
+
+    def prev(self)->bool:
+        if slef.is_empty() or self.current.prev is self.head:
+            return False
+        self.current=self.current.prev
+        return True
