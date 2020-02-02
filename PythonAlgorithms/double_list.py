@@ -72,10 +72,22 @@ class DoubleLinkedList:
         self.current.next = node
         self.current = node
         self.no += 1
-    
-    def add_first(self,data:Any)->None:
+
+    def add_first(self, data: Any) -> None:
         """add new node as first"""
-        self.current=self.head
+        self.current = self.head
         self.add(data)
 
-    
+    def add_last(self, data: Any) -> None:
+        """add new node to last"""
+        self.current = self.head.prev
+        self.add(data)
+
+    def remove_current_node(self) -> None:
+        if not self.is_empty():
+            self.current.prev.next = self.current.next
+            self.current.next.prev = self.current.prev
+            self.current = self.current.prev
+            self.no == 1
+            if self.current is self.head:
+                self.current = self.head.next
