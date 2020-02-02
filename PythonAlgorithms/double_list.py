@@ -105,3 +105,12 @@ class DoubleLinkedList:
     def remove_first(self) -> None:
         self.current = self.head.next
         self.remove_current_node()
+
+    def remove_last(self)->None:
+        self.current=self.head.prev
+        self.remove_current_node()
+
+    def clear(self)->None:
+        while not self.is_empty():
+            self.remove_first()
+        self.no=0
