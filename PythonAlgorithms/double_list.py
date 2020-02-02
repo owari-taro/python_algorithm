@@ -88,6 +88,20 @@ class DoubleLinkedList:
             self.current.prev.next = self.current.next
             self.current.next.prev = self.current.prev
             self.current = self.current.prev
-            self.no == 1
+            self.no -= 1
             if self.current is self.head:
                 self.current = self.head.next
+
+    def remove(self, p: Node) -> None:
+        """remove node p"""
+        ptr = self.head.next
+        while ptr is not self.head:
+            if ptr is p:
+                self.current = p
+                self.remove_current_node()
+                break
+                ptr = ptr.next
+
+    def remove_first(self) -> None:
+        self.current = self.head.next
+        self.remove_current_node()
