@@ -66,9 +66,16 @@ class DoubleLinkedList:
         return True
 
     def add(self, data: Any) -> None:
-        #
+        """add new node to current&'s next"""
         node = Node(data, self.current, self.current.next)
         self.current.next.prev = node
         self.current.next = node
         self.current = node
         self.no += 1
+    
+    def add_first(self,data:Any)->None:
+        """add new node as first"""
+        self.current=self.head
+        self.add(data)
+
+    
