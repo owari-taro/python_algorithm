@@ -42,3 +42,29 @@ class FixedQueue:
         if self.front == self.capacity:
             self.front = 0
         return x
+
+    def peak(self) -> Any:
+        """just display next element"""
+        if self.is_empty():
+            raise FixedQueue.Empty
+        return self.que[self.front]
+
+    def find(self, value: Any) -> Any:
+        for i in range(self.no):
+            idx = (i+self.front) % self.capacity
+            if self.que[idx] == value:
+                return idx
+        return -1
+
+    def count(self, value: Any) -> bool:
+        c = 0
+        for i in range(self.no):
+            idx = (i+self.front) % self.capacity
+            if self.que[idx] == value:
+                c += 1
+        return c
+
+    def __contains__(self, value: Any) -> bool:
+        return self.count(value) >= 1
+
+    
