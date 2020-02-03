@@ -43,3 +43,26 @@ class FixedStack:
 
     def clear(self) -> None:
         self.ptr = 0
+
+    def find(self, value: Any) -> Any:
+        for i in range(self.ptr-1, -1, -1):
+            if self.stk[i] == value:
+                return i
+        #not foune
+        return -1
+
+    def count(self, value: Any) -> int:
+        c = 0
+        for i in range(self.ptr):
+            if self.stk[i] == value:
+                c += 1
+        return c
+
+    def __contains__(self, value: Any) -> bool:
+        return self.count(value)>0
+
+    def dump(self)->None:
+        if self.is_empty():
+            print("stack is empty")
+        else:
+            print(self.stk[:self.ptr])
