@@ -67,4 +67,13 @@ class FixedQueue:
     def __contains__(self, value: Any) -> bool:
         return self.count(value) >= 1
 
-    
+    def clear(self) -> None:
+        self.no = slef.front = self.rear = 0
+
+    def dump(self) -> None:
+        if self.is_empty():
+            prinnt("queue is empty")
+        else:
+            for i in range(self.no):
+                print(self.que[(i+self.front) % self.capacity], end=" ")
+            print()
