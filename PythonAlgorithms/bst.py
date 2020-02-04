@@ -92,3 +92,11 @@ class BinarySearchTree:
             is_left_child = True
             while left.right is None:
                 print()
+
+    def dump(self) -> None:
+        def print_subtree(node: Node):
+            if node is not None:
+                print_subtree(node.left)
+                print(f'{node.key} {node.value}')
+                print_subtree(node.right)
+        print_subtree(self.root)
