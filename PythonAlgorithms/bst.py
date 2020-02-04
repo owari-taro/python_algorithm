@@ -100,3 +100,19 @@ class BinarySearchTree:
                 print(f'{node.key} {node.value}')
                 print_subtree(node.right)
         print_subtree(self.root)
+
+    def min_key(self) -> Any:
+        if self.root is None:
+            return None
+        p = self.root
+        while p.left is not None:
+            p = p.left
+        return p.key
+
+    def max_key(self) -> Any:
+        if self.root is None:
+            return None
+        p = self.root
+        while p.right is not None:
+            p = p.right
+        return p.key
