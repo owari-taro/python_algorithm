@@ -68,7 +68,7 @@ class FixedQueue:
         return self.count(value) >= 1
 
     def clear(self) -> None:
-        self.no = slef.front = self.rear = 0
+        self.no = self.front = self.rear = 0
 
     def dump(self) -> None:
         if self.is_empty():
