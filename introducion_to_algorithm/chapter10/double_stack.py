@@ -61,12 +61,29 @@ class DoubleStack:
         if mode == Mode.RIGHT:
             self.head_right += 1
             out = self.stack[self.head_right]
+            self.stack[self.head_right] = None
             self.count_right -= 1
             return out
         else:
             self.head_left -= 1
             self.count_left -= 1
-            return self.stack[self.head_left]
+            out = self.stack[self.head_left]
+            self.stack[self.head_left] = None
+            return out
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
+    right = Mode.RIGHT
+    left = Mode.LEFT
+    stack = DoubleStack(5)
+    stack.push(3, left)
+    stack.push(5, left)
+    stack.push(3, right)
+    stack.push(2, right)
+    stack.push(2, right)
+    stack.push(2, right)
+
+    # print(stack.stack)
+    # print(stack.pop(right))
+   # print(stack.stack)
+    # stack.push()
