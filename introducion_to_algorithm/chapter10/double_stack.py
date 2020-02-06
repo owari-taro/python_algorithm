@@ -3,8 +3,8 @@ from enum import Enum
 
 
 class Mode(Enum):
-    self.RIGHT = 0
-    self.LEFT = 1
+    RIGHT = 0
+    LEFT = 1
 
 
 class DoubleStack:
@@ -67,3 +67,6 @@ class DoubleStack:
             self.head_left -= 1
             self.count_left -= 1
             return self.stack[self.head_left]
+
+
+if __name__=="__main__":
