@@ -72,7 +72,7 @@ class FixedQueue:
 
     def dump(self) -> None:
         if self.is_empty():
-            prinnt("queue is empty")
+            print("queue is empty")
         else:
             for i in range(self.no):
                 print(self.que[(i+self.front) % self.capacity], end=" ")

@@ -68,7 +68,7 @@ class DoubleStack:
             self.head_left -= 1
             self.count_left -= 1
             out = self.stack[self.head_left]
-            self.stack[self.head_left] = None
+        self.stack[self.head_left] = None
             return out
 
 
