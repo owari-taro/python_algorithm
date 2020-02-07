@@ -52,25 +52,24 @@ class LinkedList:
                     return True
             return False
 
-        def remove_current(self):
-
-    def pop_current(self) -> Any: e None
-      """return current value and make prev's nodes valu"""
-       if self.head is None:
-            return None
-        output = self.current.value
-        tmp = self.head
-        count = 1
-        while count < self.count-1:
-            count += 1
-            tmp = tmp.next
-        tmp.next = None
-        self.current = tmp
-        return ouput
-
 
 class Stack:
 
     def __init__(self):
         """stack using linked list"""
         self.stack = LinkedList()
+
+    def pop(self) -> Any:
+        """return current value and make prev's nodes valu"""
+        if self.stack.head is None:
+            return None
+        output = self.stack.current.value
+        #move current to previous node
+        tmp = self.stack.head
+        count = 1
+        while count < self.stack.count-1:
+            count += 1
+            tmp = tmp.next
+        tmp.next = None
+        self.stack.current = tmp
+        return ouput
