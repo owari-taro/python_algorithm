@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import Any
 
 
@@ -13,12 +14,16 @@ class LinkedList:
         self.head = head
         self.current = None
 
+    def __len__(self) -> int:
+        return self.count
+
     def add(self, value: Any) -> None:
-        """"add new node as the last node's next""""
+        """add new node as the last node's next"""
         if self.head is None:
             node = Node(value, None)
             self.head = node
             self.current = node
+            self.count += 1
         else:
             node = Node(value, None)
             self.current.next = node
@@ -35,7 +40,25 @@ class LinkedList:
                     return tmp
             return None
 
-    def remove(value: Any) -> None:
+    def remove_current(self) -> None:
+        """remove the latest added node"""
+        if self.head is None:
+            return None
+        count = 1
+        tmp = self.head
+        if self.count == 1:
+            self.count -= 1
+            self.current = None
+            self.head = None
+        else:
+            while count < (self.count-1):
+                tmp = tmp.next
+                count += 1
+            self.count -= 1
+            tmp.next = None
+            self.current = tmp
+
+    def remove(self, value: Any) -> None:
         if self.head is None:
             return None
         elif self.head.value == value:
@@ -52,6 +75,12 @@ class LinkedList:
                     return True
             return False
 
+    def print_current(self):
+        if self.current is not None:
+            print(self.current.value)
+        else:
+            print("current is None")
+
 
 class Stack:
 
@@ -64,12 +93,22 @@ class Stack:
         if self.stack.head is None:
             return None
         output = self.stack.current.value
-        #move current to previous node
-        tmp = self.stack.head
-        count = 1
-        while count < self.stack.count-1:
-            count += 1
-            tmp = tmp.next
-        tmp.next = None
-        self.stack.current = tmp
-        return ouput
+        self.stack.remove_current()
+        return output
+
+    def add(self, value: Any) -> None:
+        self.stack.add(value)
+
+
+if __name__ == "__main__":
+    stack = Stack()
+    stack.add(3)
+    stack.add(4)
+    print(len(stack.stack))
+    print("##############################")
+    print(stack.pop())
+    print(stack.pop())
+    print(stack.pop())
+    print("###############################")
+    stack.stack.print_current()
+    print(len(stack.stack))
