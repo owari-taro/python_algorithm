@@ -75,11 +75,22 @@ class LinkedList:
                     return True
             return False
 
+    def remove_first(self) -> None:
+        if self.head is not None:
+            self.head = self.head.next
+            self.count -= 1
+
     def print_current(self):
         if self.current is not None:
             print(self.current.value)
         else:
             print("current is None")
+
+    def add_first(self, value: Any) -> None:
+        node = Node(value, None)
+        if self.head:
+            node.next = self.head
+        self.head = node
 
 
 class Stack:
@@ -98,6 +109,23 @@ class Stack:
 
     def add(self, value: Any) -> None:
         self.stack.add(value)
+
+# is inheriteance  a better way to impolement?
+
+
+class Queue:
+    def __init__(self):
+        self.queue = LinkedList()
+
+    def dequeue(self) -> Any:
+        if len(self.queue) == 0:
+            return None
+        out = self.queue.head.value
+        self.queue.remove_current()
+        return out
+
+    def enque(self, value: Any) -> None:
+        self.queue.add(value)
 
 
 if __name__ == "__main__":
