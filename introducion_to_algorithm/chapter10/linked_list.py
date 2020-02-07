@@ -6,6 +6,7 @@ class Node:
         self.value = value
         self.node = Node
 
+
 class LinkedList:
     def __init__(self, head: Node = None):
         self.count = 0
@@ -39,6 +40,7 @@ class LinkedList:
             return None
         elif self.head.value == value:
             self.head = self.head.next
+            self.count -= 1
             return True
         else:
             prev = self.head
@@ -46,9 +48,29 @@ class LinkedList:
             while tmp is not None:
                 if tmp.value == value:
                     prev.next = tmp.next
+                    self.count -= 1
                     return True
             return False
 
+        def remove_current(self):
+
+    def pop_current(self) -> Any: e None
+      """return current value and make prev's nodes valu"""
+       if self.head is None:
+            return None
+        output = self.current.value
+        tmp = self.head
+        count = 1
+        while count < self.count-1:
+            count += 1
+            tmp = tmp.next
+        tmp.next = None
+        self.current = tmp
+        return ouput
 
 
+class Stack:
 
+    def __init__(self):
+        """stack using linked list"""
+        self.stack = LinkedList()
