@@ -18,6 +18,10 @@ class DoubleEndedQueue:
         else:
             return False
 
+    def check_left(self):
+        if self.head_left != 0 and self.head_left == self.tail_left:
+            return False
+
     def enque_left(self, value: Any) -> None:
         if self.tail_left > self.tail_right and self.head_left > 0:
             self.tail_left = 0
@@ -30,6 +34,9 @@ class DoubleEndedQueue:
         if self.tail_right < self.tail_left:
             self.tail_right = self.size_limit-1
         self.queue[self.tail_right] = value
+        self.tail_right+=1
+        if self.tail_right
+        
         self.count += 1
         self.tail_right -= 1
 
@@ -40,7 +47,7 @@ class DoubleEndedQueue:
         self.tail_right -= 1
 
     def deque_left(self):
-        if self.head_left == self.tail_left:
+        if self.head_left == 0 and self.tail_left == 0:
             raise DoubleEndedQueue.Empty()
         out = self.queue[self.head_left]
         self.head_left += 1
