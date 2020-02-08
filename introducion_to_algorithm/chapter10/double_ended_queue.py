@@ -19,12 +19,22 @@ class DoubleEndedQueue:
             return False
 
     def enque_left(self, value: Any) -> None:
+        if self.tail_left > self.tail_right and self.head_left > 0:
+            self.tail_left = 0
         # if self.tail_left<=self.tail_right:
         self.queue[self.tail_left] = value
         self.count += 1
         self.tail_left += 1
 
+    def enque_right(self, value: Any) -> None:
+        if self.tail_right < self.tail_left:
+            self.tail_right = self.size_limit-1
+        self.queue[self.tail_right] = value
+        self.count += 1
+        self.tail_right -= 1
+
     def deque_right(self, value: Any) -> None:
+
         self.queue[self.tail_left] = value
         self.count += 1
         self.tail_right -= 1
