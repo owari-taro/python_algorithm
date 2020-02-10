@@ -39,3 +39,13 @@ class BinarySearchTree:
         else:
             prev.right = node
         return True
+    
+    def print_tree(self):
+        def print_helper(node:Node):
+            if node is not None:
+                print_helper(node.left)
+                print(f'{node.key}:{node.value} ')
+                print_helper(node.right)    
+        print_helper(self.root)    
+
+            
