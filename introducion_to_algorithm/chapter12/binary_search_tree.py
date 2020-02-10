@@ -6,6 +6,9 @@ class Node:
         self.key = key
         self.value = value
 
+    def __eq__(self, other):
+        return self.key == other.key and self.value == other.value
+
 
 class BinarySearchTree:
     def __init__(self):
@@ -64,9 +67,30 @@ class BinarySearchTree:
         def search_helper(node: Node, key: str) -> Node:
             if node.key == k or node is None:
                 return node
-            if node.key<key:
-                search_helper(node.right,key)
+            if node.key < key:
+                search_helper(node.right, key)
             else:
-                search_helper(node.left,key)
-        node=self.root
-        return search_helper(node)
+                search_helper(node.left, key)
+        node = self.root
+        return search_helper(node, key)
+
+    def delete(self, key: str) -> bool:
+        cur = self.root
+        parent = None
+        # find key
+        while True
+           if current is None:
+                return False
+            if current.key ==key:
+                break
+            elif key <parent.key:
+                is_left = True
+                current = current.left
+            else:
+                is_left = False
+                current = current.right
+
+        # check
+        if current.left is None:
+            if current ==self.root:
+                
