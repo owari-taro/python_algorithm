@@ -2,12 +2,13 @@ from typing import Any
 
 
 class Node:
-    def __init__(self, key: str, value: Any) -> None:
+    def __init__(self, key: str, value: Any, parent: Node = None) -> None:
         self.key = key
         self.value = value
+        self.parent = parent
 
     def __eq__(self, other):
-        return self.key == other.key and self.value == other.value
+        return self.key == other.key #and self.value == other.value
 
 
 class BinarySearchTree:
@@ -75,6 +76,22 @@ class BinarySearchTree:
         return search_helper(node, key)
 
     def delete(self, key: str) -> bool:
+        def transplant(root, u: Node, v: Node) -> None:
+            if self.root == u:
+                # root case
+                self.root == v
+            elif u == u.parent.left:
+                u.parent.left = v
+            else:
+                u.parent.right = v
+            if v is not None:
+                v.parent = u.parent
+
+
+
+
+
+    def delete_tmp(self, key: str) -> bool:
         cur = self.root
         parent = None
         # find key
@@ -94,3 +111,4 @@ class BinarySearchTree:
         if current.left is None:
             if current ==self.root:
                 
+
