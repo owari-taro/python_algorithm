@@ -53,9 +53,20 @@ class BinarySearchTree:
         while tmp.left is not None:
             tmp = tmp.left
         return tmp
-    
+
     def search_max(self):
-        tmp=self.root
+        tmp = self.root
         while tmp.right is not None:
-            tmp=tmp.right
+            tmp = tmp.right
         return tmp
+
+    def search(self, k):
+        def search_helper(node: Node, key: str) -> Node:
+            if node.key == k or node is None:
+                return node
+            if node.key<key:
+                search_helper(node.right,key)
+            else:
+                search_helper(node.left,key)
+        node=self.root
+        return search_helper(node)
