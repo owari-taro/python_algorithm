@@ -5,8 +5,10 @@ from typing import Any
 class Node:
     def __init__(self, value: Any, next: Node = None):
         self.value = value
-        self.node = Node
-
+        self.next = Node
+        
+    def __eq__(self,value,other):
+        return self.value==other.value
 
 class LinkedList:
     def __init__(self, head: Node = None):
