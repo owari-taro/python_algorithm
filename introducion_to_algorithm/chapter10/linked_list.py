@@ -100,27 +100,30 @@ class LinkedList:
         if linked_list.count == 0:
             print("extendされませんでした")
         else:
-            self.count+=linked_list.count
+            self.count += linked_list.count
             self.current.next = linked_list.head
             self.current = linked_list.current
-    def reverse(self):
-        if self.count>=2:
-            prev=self.head
-            next=prev.next
-            while True:
-                tmp=next.next
-                next.next=prev
-                
-                
-                
-                prev=next
-                prev=tmp
-              
-            #Todo
-            self.head=None
-            self.current=None            
 
-        
+    def reverse(self)->None:
+        if self.count >= 2:
+            self.current = self.head
+            prev = self.head
+            next = prev.next
+            while True:
+                tmp = next.next
+                if tmp is None:
+                    next.next = prev
+                    self.head = next
+                    break
+
+                next.next = prev
+                prev = next
+                next = tmp
+
+            # Todo
+            self.head = None
+            self.current = None
+
 
 class Stack:
 
