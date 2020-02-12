@@ -6,9 +6,10 @@ class Node:
     def __init__(self, value: Any, next: Node = None):
         self.value = value
         self.next = Node
-        
-    def __eq__(self,value,other):
-        return self.value==other.value
+
+    def __eq__(self, value, other) -> bool:
+        return self.value == other.value
+
 
 class LinkedList:
     def __init__(self, head: Node = None):
@@ -94,6 +95,32 @@ class LinkedList:
             node.next = self.head
         self.head = node
 
+    def extend(self, linked_list: LinkedList) -> None:
+        """merge two linked_list"""
+        if linked_list.count == 0:
+            print("extendされませんでした")
+        else:
+            self.count+=linked_list.count
+            self.current.next = linked_list.head
+            self.current = linked_list.current
+    def reverse(self):
+        if self.count>=2:
+            prev=self.head
+            next=prev.next
+            while True:
+                tmp=next.next
+                next.next=prev
+                
+                
+                
+                prev=next
+                prev=tmp
+              
+            #Todo
+            self.head=None
+            self.current=None            
+
+        
 
 class Stack:
 
