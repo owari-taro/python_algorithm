@@ -7,7 +7,7 @@ class Node:
         self.value = value
         self.next = Node
 
-    def __eq__(self, value, other) -> bool:
+    def __eq__(self, other:Node) -> bool:
         return self.value == other.value
 
 
