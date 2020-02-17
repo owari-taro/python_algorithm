@@ -18,7 +18,7 @@ def permute_by_sort(input_list: List) -> List:
         ele_list.append(Element(value, int(uniform(0, n**3))))
     print(ele_list)
     ele_list = sorted(ele_list, key=lambda u: u.priority)
-    return [ele.value for ele in tmp_list]
+    return [ele.value for ele in ele_list]
 
 
 def randomlize_in_place(input_list: List) -> List:
