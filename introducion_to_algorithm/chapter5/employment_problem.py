@@ -20,20 +20,37 @@ def fire_assistant(candidate_list: List[Person]) -> None:
             best = ele.score
 
 
-def biased_generator(prob: float) -> float:
+def biased_generator(prob: float = 0.3) -> float:
     num = random.uniform(0, 1)
-    #print(num)
+    # print(num)
     if prob > num:
         return 1
     else:
         return 0
 
 
-def unbiased_generator(prob:float):
-    tmp = [biased_generator(prob) for i in range(1000)]
-    #TODO:make this calculation more accurate,see effective python 2nd
+def unbiased_generator():
+    tmp = [biased_generator() for i in range(10000)]
+    # TODO:make this calculation more accurate,see effective python 2nd
     estimate = sum(tmp)/len(tmp)
-    print(estimate)
+
+    def helper(estimate):
+        result = []
+        for i in range(100):
+            result.append(biased_generator())
+        tmp = float(sum(result))/float(estimate*2*100)
+       # print(tmp)
+        if tmp > 0.5:
+            return 1
+        else:
+            return 0
+    
+    return helper(estimate)
+
 
 if __name__ == "__main__":
-    print(unbiased_generator(0.3))
+    # print(unbiased_generator(0.3))
+    print(unbiased_generator())
+    for i in range(1000):
+        test=[unbiased_generator() for i in range(100)]
+        print(float(sum(test)/len(test)))
