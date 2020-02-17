@@ -32,6 +32,7 @@ class Heap:
     def __init__(self, heap_size):
         self.data = []
         self.heap_size = heap_size
+        self.len = 0
 
 
 def max_heaptify(heap: Heap, i):
@@ -46,3 +47,9 @@ def max_heaptify(heap: Heap, i):
         largest = r
     if largest != i:
         max_heaptify(heap, largest)
+
+
+def build_max_heap(heap: Heap):
+    heap.heap_size = len(heap.data)
+    for i range(int(heap.heap_size/2), 1, -1):
+        max_heaptify(heap, i)
