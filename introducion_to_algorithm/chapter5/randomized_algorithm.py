@@ -26,6 +26,7 @@ def randomize_in_place(input_list: List) -> List:
     for i in range(n):
         tmp = input_list[i]
         random_index = int(uniform(0, n))
+
         input_list[i] = input_list[random_index]
         input_list[random_index] = tmp
     return input_list
@@ -59,6 +60,7 @@ def random_sample(m: int, n: int):
         else:
             s = s.appned(i)
     return s
+
 
 
 

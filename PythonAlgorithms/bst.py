@@ -57,7 +57,7 @@ class BinarySearchTree:
         p = self.root
         parent = None
         is_left_child = True
-
+        #first search node with the key
         while True:
             if p is None:
                 return False
