@@ -45,3 +45,31 @@ class Queue:
         self.tail += 1
         if self.tail == self.size_limit:
             self.tail = 0
+
+
+class Stack:
+    """stack made from queue"""
+    # TODO:test
+
+    def __init__(self, size_limit: int):
+        self.queue_push = Queue(size_limit)
+        self.queue_pop = Queue(size_limit)
+
+    def push(self, value: Any):
+        if self.queue_push.is_full():
+            return Queue.OverFlow
+        else:
+            self.queue_push.push(value)
+
+    def pop(self):
+        if self.queue_push.count > 0:
+            self.exchange()
+            value = self.queue_pop.pop()
+            self.queue_pop, self.queue_push = self.queue_push, self.queue_pop
+            return value
+        else:
+            return None
+
+    def exchange(self):
+        while self.push.count > 0:
+            self.queue_pop.push(self.queue_push].pop())
