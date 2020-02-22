@@ -45,3 +45,6 @@ class Queue:
         self.tail += 1
         if self.tail == self.size_limit:
             self.tail = 0
+
+    def __eq__(self, other):
+        return self.count == other.count and self.queue==other.queue
