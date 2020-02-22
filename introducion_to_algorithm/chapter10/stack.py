@@ -40,5 +40,37 @@ class Stack:
             raise Stack.UnderFlow
         else:
             self.head -= 1
-            self.count-=1
+            self.count -= 1
             return self.stack[self.head]
+
+
+class Queue:
+    """queue made from two stacks"""
+
+    def __init__(self, size_limit: int):
+        self.stack_first = Stack(size_limit)
+        self.stack_second = Stack(size_limit)
+        self.size_limit = size_limit
+
+    def push(self, x: Any) -> None:
+        if not self.stack_first.is_full():
+            self.stack_first.push(x)
+        else:
+            return self.stack_first.OverFlow
+
+    def pop(self):
+        if self.stack_first.is_empty():
+            return None
+        else:
+            while self.stack_first.count > 0:
+                self.exchange(self.stack_first, self.stack_second)
+            out = self.stack_second.pop()
+            # restore the rest of elements
+            self.exchange(self.stack_first, self.stack_first)
+            return out
+
+    def exchange(self, stack1, stack2):
+        """exchange contents between two stacks"""
+        while stack1.count > 0:
+            tmp = stack1.pop()
+            stack2.push(tmp)

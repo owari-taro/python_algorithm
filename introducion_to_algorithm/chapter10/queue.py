@@ -31,6 +31,7 @@ class Queue:
         if self.is_empty():
             return Queue.Empty
         output = self.queue[self.head]
+        self.queue[self.head] = None
         self.head += 1
         self.count -= 1
         if self.head == self.size_limit:
@@ -47,4 +48,44 @@ class Queue:
             self.tail = 0
 
     def __eq__(self, other):
-        return self.count == other.count and self.queue==other.queue
+        return self.count == other.count and self.queue == other.queue
+
+
+class Stack:
+    """stack made from queue"""
+    # TODO:test
+
+    def __init__(self, size_limit: int):
+        self.queue_push = Queue(size_limit)
+        self.queue_pop = Queue(size_limit)
+
+    def push(self, value: Any):
+        if self.queue_push.is_full():
+            return Queue.OverFlow
+        else:
+            self.queue_push.enqueue(value)
+
+    def pop(self):
+        if self.queue_push.count > 0:
+            self.exchange()
+            value = self.queue_pop.deqeue()
+            self.queue_pop, self.queue_push = self.queue_push, self.queue_pop
+            return value
+        else:
+            return None
+
+    def exchange(self):
+        while self.queue_push.count > 0:
+            self.queue_pop.enqueue(self.queue_push.deqeue())
+
+    def print_elements(self):
+        print(self.queue_push.queue)
+
+
+if __name__ == "__main__":
+    stack = Stack(5)
+    stack.push(3)
+    stack.push(3)
+    stack.print_elements()
+    print(stack.pop())
+    stack.print_elements()
