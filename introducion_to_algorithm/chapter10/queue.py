@@ -29,7 +29,7 @@ class Queue:
 
     def deqeue(self) -> Any:
         if self.is_empty():
-            return Queue.Empty
+            raise Queue.Empty
         output = self.queue[self.head]
         self.queue[self.head] = None
         self.head += 1
