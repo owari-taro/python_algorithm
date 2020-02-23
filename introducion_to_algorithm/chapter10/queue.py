@@ -67,8 +67,7 @@ class Stack:
 
     def pop(self):
         if self.queue_push.count > 0:
-            self.exchange()
-            value = self.queue_pop.deqeue()
+            value = self.exchange()
             self.queue_pop, self.queue_push = self.queue_push, self.queue_pop
             return value
         else:
@@ -76,7 +75,10 @@ class Stack:
 
     def exchange(self):
         while self.queue_push.count > 0:
-            self.queue_pop.enqueue(self.queue_push.deqeue())
+            tmp = self.queue_push.deqeue()
+            if self.queue_push.count == 0:
+                return tmp
+            self.queue_pop.enqueue(tmp)
 
     def print_elements(self):
         print(self.queue_push.queue)
