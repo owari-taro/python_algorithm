@@ -77,6 +77,7 @@ class Stack:
         while self.queue_push.count > 0:
             tmp = self.queue_push.deqeue()
             if self.queue_push.count == 0:
+                #the lat element doesnt have to be saved into queue
                 return tmp
             self.queue_pop.enqueue(tmp)
 
