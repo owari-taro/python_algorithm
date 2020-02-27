@@ -54,6 +54,11 @@ class Queue:
 class Stack:
     """stack made from queue"""
     # TODO:test
+    class Full(Exception):
+        pass
+
+    class Empty(Exception):
+        pass
 
     def __init__(self, size_limit: int):
         self.queue_push = Queue(size_limit)
@@ -61,7 +66,7 @@ class Stack:
 
     def push(self, value: Any):
         if self.queue_push.is_full():
-            return Queue.OverFlow
+            raise Stack.Full
         else:
             self.queue_push.enqueue(value)
 
@@ -71,17 +76,18 @@ class Stack:
             self.queue_pop, self.queue_push = self.queue_push, self.queue_pop
             return value
         else:
-            return None
+            raise  Stack.Empty
 
     def exchange(self):
         while self.queue_push.count > 0:
             tmp = self.queue_push.deqeue()
             if self.queue_push.count == 0:
-                #the lat element doesnt have to be saved into queue
+                # the lat element doesnt have to be saved into queue
                 return tmp
             self.queue_pop.enqueue(tmp)
 
     def print_elements(self):
+        print(len(self.queue_push.queue))
         print(self.queue_push.queue)
 
 
