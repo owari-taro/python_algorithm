@@ -7,7 +7,7 @@ class Node:
         self.value = value
         self.next = Node
 
-    def __eq__(self, other:Node) -> bool:
+    def __eq__(self, other: Node) -> bool:
         return self.value == other.value
 
 
@@ -19,6 +19,20 @@ class LinkedList:
 
     def __len__(self) -> int:
         return self.count
+
+    def __eq__(self, other):
+        def eq_helper():
+            tmp = self.head
+            tmp_other = other.head
+            while True:
+                if tmp is None and tmp_other is None:
+                    return True
+                elif not tmp == tmp_other:
+                    return False
+                tmp, tmp_other = tmp.next, tmp_other.next
+            else:
+                return False
+        return eq_helper()
 
     def add(self, value: Any) -> None:
         """add new node as the last node's next"""
@@ -104,7 +118,7 @@ class LinkedList:
             self.current.next = linked_list.head
             self.current = linked_list.current
 
-    def reverse(self)->None:
+    def reverse(self) -> None:
         if self.count >= 2:
             self.current = self.head
             prev = self.head
