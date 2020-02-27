@@ -53,3 +53,4 @@ class TestStack:
         with pytest.raises(Stack.Full):
             for i in range(100):
                 self.stack.push(i)
+.

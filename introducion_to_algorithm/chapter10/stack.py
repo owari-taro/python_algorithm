@@ -53,30 +53,45 @@ class Queue:
         pass
 
     def __init__(self, size_limit: int):
-        self.stack_push = Stack(size_limit)
-        self.stack_pop = Stack(size_limit)
+        self.stack_enque = Stack(size_limit)
+        self.stack_deque = Stack(size_limit)
         self.size_limit = size_limit
 
-    def push(self, x: Any) -> None:
-        if not self.stack_push.is_full():
-            self.stack_push.push(x)
+    def is_full(self):
+        return self.stack_enque.is_full()
+
+    def is_empty(self):
+        return self.stack_enque.is_empty()
+
+    def enque(self, x: Any) -> None:
+        if not self.is_full():
+            self.stack_enque.push(x)
         else:
             raise Stack.Full
            # return self.stack_first.OverFlow
 
-    def pop(self):
-        if self.stack_push.is_empty():
+    def deque(self):
+        if self.stack_enque.is_empty():
+            print("cannot deque from empty queue")
             raise Queue.Empty
         else:
-            while self.stack_push.count > 0:
-                self.exchange(self.stack_push, self.stack_pop)
-            out = self.stack_pop.pop()
+            self.exchange(self.stack_enque, self.stack_deque)
+            out = self.stack_deque.pop()
             # restore the rest of elements
-            self.exchange(self.stack_pop, self.stack_pop)
+            self.exchange(self.stack_deque, self.stack_enque)
             return out
 
     def exchange(self, stack1, stack2):
         """exchange contents between two stacks"""
-        while stack1.count > 0:
+        while not stack1.is_empty():
             tmp = stack1.pop()
             stack2.push(tmp)
+
+
+if __name__ == "__main__":
+    queue = Queue(5)
+    queue.enque(3)
+    queue.enque(2)
+    queue.enque(1)
+    for i in range(3):
+        print(queue.deque())
