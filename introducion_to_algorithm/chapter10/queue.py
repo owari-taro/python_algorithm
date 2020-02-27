@@ -18,14 +18,12 @@ class Queue:
     def is_empty(self):
         if self.count == 0:
             return True
-        else:
-            return False
+        return False
 
     def is_full(self):
         if self.count >= self.size_limit:
             return True
-        else:
-            return False
+        return False
 
     def deqeue(self) -> Any:
         if self.is_empty():
@@ -67,16 +65,14 @@ class Stack:
     def push(self, value: Any):
         if self.queue_push.is_full():
             raise Stack.Full
-        else:
-            self.queue_push.enqueue(value)
+        self.queue_push.enqueue(value)
 
     def pop(self):
         if self.queue_push.count > 0:
             value = self.exchange()
             self.queue_pop, self.queue_push = self.queue_push, self.queue_pop
             return value
-        else:
-            raise  Stack.Empty
+        raise Stack.Empty
 
     def exchange(self):
         while self.queue_push.count > 0:
@@ -87,6 +83,7 @@ class Stack:
             self.queue_pop.enqueue(tmp)
 
     def print_elements(self):
+        """just elements of queue push"""
         print(len(self.queue_push.queue))
         print(self.queue_push.queue)
 
