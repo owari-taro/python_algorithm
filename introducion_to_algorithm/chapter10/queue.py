@@ -18,18 +18,16 @@ class Queue:
     def is_empty(self):
         if self.count == 0:
             return True
-        else:
-            return False
+        return False
 
     def is_full(self):
         if self.count >= self.size_limit:
             return True
-        else:
-            return False
+        return False
 
     def deqeue(self) -> Any:
         if self.is_empty():
-            return Queue.Empty
+            raise Queue.Empty
         output = self.queue[self.head]
         self.queue[self.head] = None
         self.head += 1
@@ -47,10 +45,18 @@ class Queue:
         if self.tail == self.size_limit:
             self.tail = 0
 
+    def __eq__(self, other):
+        return self.count == other.count and self.queue == other.queue
+
 
 class Stack:
     """stack made from queue"""
     # TODO:test
+    class Full(Exception):
+        pass
+
+    class Empty(Exception):
+        pass
 
     def __init__(self, size_limit: int):
         self.queue_push = Queue(size_limit)
@@ -58,24 +64,27 @@ class Stack:
 
     def push(self, value: Any):
         if self.queue_push.is_full():
-            return Queue.OverFlow
-        else:
-            self.queue_push.enqueue(value)
+            raise Stack.Full
+        self.queue_push.enqueue(value)
 
     def pop(self):
         if self.queue_push.count > 0:
-            self.exchange()
-            value = self.queue_pop.deqeue()
+            value = self.exchange()
             self.queue_pop, self.queue_push = self.queue_push, self.queue_pop
             return value
-        else:
-            return None
+        raise Stack.Empty
 
     def exchange(self):
         while self.queue_push.count > 0:
-            self.queue_pop.enqueue(self.queue_push.deqeue())
+            tmp = self.queue_push.deqeue()
+            if self.queue_push.count == 0:
+                # the lat element doesnt have to be saved into queue
+                return tmp
+            self.queue_pop.enqueue(tmp)
 
     def print_elements(self):
+        """just elements of queue push"""
+        print(len(self.queue_push.queue))
         print(self.queue_push.queue)
 
 

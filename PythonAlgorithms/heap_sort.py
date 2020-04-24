@@ -2,8 +2,8 @@ from typing import MutableSequence
 
 
 def heap_sort(a: MutableSequence, left: int, right: int) -> None:
-    def down_heap():
-        # root
+    def down_heap(a: MutableSequence, left: int, right: int):
+        """"make parent,which has left index, have the maximum value """
         tmp = a[left]
         parent = left
         while parent < (right+1)//2:
@@ -25,3 +25,7 @@ def heap_sort(a: MutableSequence, left: int, right: int) -> None:
     for i in range(n-1, 0, 1):
         a[0], a[i] = a[i], a[0]
         down_heap(a, 0, i-1)
+
+
+if __name__ == "__main__":
+    print()

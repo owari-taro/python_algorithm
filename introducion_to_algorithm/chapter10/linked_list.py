@@ -4,21 +4,57 @@ from typing import Any
 
 class Node:
     def __init__(self, value: Any, next: Node = None):
+        """"
+        Node is used as each elment of linked_list
+        value:Any
+        next:Node
+        """
         self.value = value
-        self.next = Node
+        self.next = next
 
-    def __eq__(self, other:Node) -> bool:
+    def __eq__(self, other: Node) -> bool:
         return self.value == other.value
+
+    def __str__(self):
+        return f"value:{self.value} Node:{self.next}"
+
+    def __repr__(self):
+        return f"value:{self.value} Node:{self.next}"
 
 
 class LinkedList:
     def __init__(self, head: Node = None):
-        self.count = 0
+        """"
+
+        head:Node
+        """
+        if head is None:
+            self.cont = 0
+        else:
+            self.count = 1
         self.head = head
-        self.current = None
+        self.current = head
 
     def __len__(self) -> int:
         return self.count
+
+    def __eq__(self, other):
+        def eq_helper():
+            if self.count != other.count:
+                return False
+            tmp = self.head
+            tmp_other = other.head
+            while True:
+                print(tmp)
+                print(tmp_other)
+                if tmp is None and tmp_other is None:
+                    return True
+                elif not tmp == tmp_other:
+                    return False
+                tmp, tmp_other = tmp.next, tmp_other.next
+            else:
+                return False
+        return eq_helper()
 
     def add(self, value: Any) -> None:
         """add new node as the last node's next"""
@@ -104,7 +140,7 @@ class LinkedList:
             self.current.next = linked_list.head
             self.current = linked_list.current
 
-    def reverse(self)->None:
+    def reverse(self) -> None:
         if self.count >= 2:
             self.current = self.head
             prev = self.head
