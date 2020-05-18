@@ -1,4 +1,7 @@
 import random
+from typing import List
+from collections import deque
+Matrix = List[List]
 
 
 def genereate_graph(n: int, m: int):
@@ -26,3 +29,22 @@ def genereate_graph(n: int, m: int):
         graph_data[i][j] = graph_data[j][i] = 1
 
     return graph_data, edge_set
+
+
+def breadth_first_search(start: int, W: List[List]):
+    workqueue = deque([])
+    visited = set()
+    work_queue.append(start)
+    visited.add(start)
+    while workqueue:
+        here = workqueue.popleft()
+        for i, node in snumerate(W[here]):
+            if node == 0:
+                conrtinue
+
+            if i not in visited:
+                work_queue.append(i)
+                visited.add(i)
+    return visited
+
+
