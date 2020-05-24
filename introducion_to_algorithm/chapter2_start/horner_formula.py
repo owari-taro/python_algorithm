@@ -1,11 +1,11 @@
 from typing import List
-
+#p34
 
 def horner(coef_list: List, x: float):
     y = 0
     n = len(coef_list)
     for i in range(n-1, -1, -1):
-        y += a[i]+x*y
+        y += coef_list[i]+x*y
     return y
 
 
