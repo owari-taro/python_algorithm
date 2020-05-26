@@ -2,19 +2,18 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any
 import hashlib
-
+from dataclasses import dataclass
 
 class Status(Enum):
     OCCUPIED = 0
     EMPTY = 1
     DELETED = 2
 
-
+@dataclass
 class Bucket:
-    def __init__(self, key, value, status):
-        self.key = key
-        self.value = value
-        self.status = status
+        key:Any
+        value:Any 
+        status:Status 
 
     def set(self, key, value, status) -> None:
         self.key = key
