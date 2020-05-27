@@ -85,7 +85,7 @@ class HashTable:
     def dump(self) -> None:
         """
         print table content
-
+        __str__ is better?
         """
         for i in range(self.capacity):
             p = self.table[i]
