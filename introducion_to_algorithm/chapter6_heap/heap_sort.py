@@ -31,16 +31,23 @@ def parent(i: int):
 class Heap:
     def __init__(self,):
         self.data = []
-        self.size = len(self.data)
+        # self.size = len(self.data)while expression:
+
+    def size(self):
+        return len(self.data)
+
+
+def min_heaptify():
+    NotImplemented
 
 
 def max_heaptify(heap: Heap, i: int) -> None:
     l = left(i)
     r = right(i)
     largest = i
-    if l < heap.size and heap.data[l] > heap.data[i]:
+    if l < heap.size() and heap.data[l] > heap.data[i]:
         largest = l
-    elif r < heap.size and heap.data[r] > heap.data[i]:
+    elif r < heap.size() and heap.data[r] > heap.data[i]:
         largest = r
     if largest != i:
         heap.data[i], heap.data[largest] = heap.data[largest], heap.data[i]
