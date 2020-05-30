@@ -29,11 +29,11 @@ def parent(i: int):
 
 
 class Heap:
-    def __init__(self,):
+    def __init__(self):
         self.data = []
         # self.size = len(self.data)while expression:
 
-    def size(self):
+    def size(self) -> int:
         return len(self.data)
 
 
