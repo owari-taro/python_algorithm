@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, List
 
 
 class Node:
@@ -29,23 +29,21 @@ def parent(i: int):
 
 
 class Heap:
-    def __init__(self, heap_size):
+    def __init__(self,):
         self.data = []
-        self.heap_size = heap_size
-        self.len = 0
+        self.size = len(self.data)
 
 
-def max_heaptify(heap: Heap, i):
-    #root is largest
+def max_heaptify(heap: Heap, i: int) -> None:
     l = left(i)
     r = right(i)
-    if l < heap.heap_size and heap.data[l] > heap.data[i]:
+    largest = i
+    if l < heap.size and heap.data[l] > heap.data[i]:
         largest = l
-    else:
-        largest = i
-    if r <= heap.heap_size and heap.data[r] > heap[largest]:
+    elif r < heap.size and heap.data[r] > heap.data[i]:
         largest = r
     if largest != i:
+        heap.data[i], heap.data[largest] = heap.data[largest], heap.data[i]
         max_heaptify(heap, largest)
 
 
