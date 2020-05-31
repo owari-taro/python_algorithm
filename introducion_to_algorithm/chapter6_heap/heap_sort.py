@@ -16,11 +16,36 @@ class Node:
         return 2*self.index+1
 
 
-def left(i: int):
+def left(i: int) -> int:
+    """
+    return left child's index
+
+    Parameters
+    ----------
+    i : int
+        [description]
+
+    Returns
+    -------
+    int
+        [description]
+    """
     return 2*i
 
 
-def right(i: int):
+def right(i: int) -> int:
+    """
+    return right child's index
+    Parameters
+    ----------
+    i : int
+        [description]
+
+    Returns
+    -------
+    int
+        [description]
+    """
     return 2*i+1
 
 
@@ -52,6 +77,19 @@ def max_heaptify(heap: Heap, i: int) -> None:
     if largest != i:
         heap.data[i], heap.data[largest] = heap.data[largest], heap.data[i]
         max_heaptify(heap, largest)
+
+
+def min_heaptify(heap: Heap, i: int) -> None:
+    l = left(i)
+    r = right(i)
+    smallest = i
+    if l < heap.siz() and heap.data[l] < heap.data[i]:
+        smallest = l
+    elif r < heap.size() and heap.data[r] < heap.data[i]:
+        smallest = r
+    if smallest != i:
+        heap.data[i], heap.data[smallest] = heap.data[smallest], heap.data[i]
+        min_heaptify(heap, smallest)
 
 
 def build_max_heap(heap: Heap):
