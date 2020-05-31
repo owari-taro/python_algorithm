@@ -59,6 +59,14 @@ class Heap:
         # self.size = len(self.data)while expression:
 
     def size(self) -> int:
+        """
+        return length of data
+
+        Returns
+        -------
+        int
+            [description]
+        """
         return len(self.data)
 
 
@@ -92,7 +100,11 @@ def min_heaptify(heap: Heap, i: int) -> None:
         min_heaptify(heap, smallest)
 
 
-def build_max_heap(heap: Heap):
-    heap.heap_size = len(heap.data)
-    for i range(int(heap.heap_size/2), 1, -1):
+def build_max_heap(heap: Heap) -> None:
+    
+    size = heap.size()
+    #start with the parent having the largest index
+    for i in range(int(size/2), 1, -1):
         max_heaptify(heap, i)
+
+
