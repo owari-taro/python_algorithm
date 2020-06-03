@@ -1,14 +1,47 @@
+from __future__ import annotations
 from typing import Any
+import attr
 
 
+@attr.s
 class Node:
-    def __init__(self, key: str, value: Any, parent: Node = None) -> None:
-        self.key = key
-        self.value = value
-        self.parent = parent
+
+    key: Any = attr.ib()
+    value: Any = attr.ib()
+    left: Node = attr.ib()
+    right: Node = attr.ib()
+    parent: Node = attr.ib()
 
     def __eq__(self, other):
-        return self.key == other.key #and self.value == other.value
+        return self.key == other.key  # and self.value == other.value
+
+
+def inorder_tree_work(x: Node) -> None:
+    if x:
+        inorder_tree_work(x.left)
+        print(x.key)
+        inorder_tree_work(x.right)
+
+def inorder_tree_work_non_recursive(x:Node)->None:
+    stack=[x]
+    while True:
+        if x.left:
+            stack.append(x.left)
+            x=x.left
+        print(x.key)
+        if x.right:
+            x=x.right
+
+
+            
+
+def tree_search(x: Node, key)->None:
+    if (x is None) or x.key == key:
+        return x
+    if x.key > key:
+        return tree_search(x.left, key)
+    else:
+        return tree_search(x.right, key)
 
 
 class BinarySearchTree:
@@ -86,10 +119,6 @@ class BinarySearchTree:
                 u.parent.right = v
             if v is not None:
                 v.parent = u.parent
-
-
-
-
 
     def delete_tmp(self, key: str) -> bool:
         cur = self.root
