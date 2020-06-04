@@ -10,7 +10,8 @@ class Node:
     value: Any = attr.ib()
     left: Node = attr.ib()
     right: Node = attr.ib()
-    parent: Node = attr.ib()
+    not_printed: bool = attr.ib()
+    # parent: Node = attr.ib()
 
     def __eq__(self, other):
         return self.key == other.key  # and self.value == other.value
@@ -22,20 +23,27 @@ def inorder_tree_work(x: Node) -> None:
         print(x.key)
         inorder_tree_work(x.right)
 
-def inorder_tree_work_non_recursive(x:Node)->None:
-    stack=[x]
-    while True:
-        if x.left:
-            stack.append(x.left)
-            x=x.left
-        print(x.key)
-        if x.right:
-            x=x.right
+
+def inorder_tree_work_non_recursive(node: Node) -> None:
+    current = node
+    stack = [current]
+    while stack:
+        if current.left and current.left.not_printed:
+            current = current.left
+            stack.append(current)
+        else:
+            if current.left is None:       
+                current=curretnt.pop()
+            print(current.key)
+            current.is_printed = True
+            if current.right:
+                current = current.right
+                stack.append(cunrrent)
+            else:
+                current=stack.pop()
 
 
-            
-
-def tree_search(x: Node, key)->None:
+def tree_search(x: Node, key) -> None:
     if (x is None) or x.key == key:
         return x
     if x.key > key:
