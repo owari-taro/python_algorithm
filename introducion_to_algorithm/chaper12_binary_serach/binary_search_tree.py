@@ -10,6 +10,7 @@ class Node:
     value: Any = attr.ib()
     left: Node = attr.ib()
     right: Node = attr.ib()
+    not_printed: bool = attr.ib()
     parent: Node = attr.ib()
 
     def __eq__(self, other):
@@ -22,28 +23,128 @@ def inorder_tree_work(x: Node) -> None:
         print(x.key)
         inorder_tree_work(x.right)
 
-def inorder_tree_work_non_recursive(x:Node)->None:
-    stack=[x]
-    while True:
-        if x.left:
-            stack.append(x.left)
-            x=x.left
-        print(x.key)
-        if x.right:
-            x=x.right
 
-
-            
-
-def tree_search(x: Node, key)->None:
-    if (x is None) or x.key == key:
-        return x
-    if x.key > key:
+def tree_search(node: Node, key: Any) -> Node:
+    if (node is None) or node.key == key:
+        return node
+    if node.key > key:
         return tree_search(x.left, key)
     else:
-        return tree_search(x.right, key)
+        return tree_search(node.right, key)
 
 
+def iterative_tree_search(node: Node, key) -> Node:
+    while node and node.key != key:
+        if node.key < key:
+            node = node.right
+        else:
+            node = node.left
+
+    return node
+
+
+def tree_mininum(node: Node) -> Node:
+    """find minimum node
+
+    Parameters
+    ----------
+    node : Node
+        [description]
+
+    Returns
+    -------
+    Node
+        [description]
+    """
+    if not node:
+        raise ValueError("node must notbe None")
+    while node.left:
+        node = node.left
+    return node
+
+
+def tree_maximum(node: Node) -> Node:
+    """[summary]
+
+    Parameters
+    ----------
+    node : Node
+        [description]
+
+    Returns
+    -------
+    Node
+        [description]
+
+    Raises
+    ------
+    ValueError
+        [description]
+    """
+    if not node:
+        raise ValueError("node must not be none")
+    while node.right:
+        node = node.right
+    return node
+
+
+def tree_successor(node: Node):
+    if node.right:
+        return tree_mininum(node.right)
+    parent = node.parent
+    while parent and parent.right == node:
+        node = parent
+        parent = parent.parent
+    return parent
+
+    print("####")
+
+
+@attr.s
+class Tree:
+    root: Node = attr.ib()
+    def transplant(self,deleted_node:Node,moved_node:Node):
+        """[summary]
+
+        Parameters
+        ----------
+        deleted_node : Node
+            [description]
+        moved_node : Node
+            [description]
+        """         
+        if deleted_node.parent is None:
+            self.root=moved_node
+        elif deleted_node==deleted_node.parent.left:
+            deleted_node.parent.left=moved_node
+        else:
+            deleted_node.parent.right=moved_node
+
+    def delete(self,node:Node)->Node:
+        if node.left:
+            NotImplemented
+        
+
+    def insert(self, new_node: Any) -> None:
+        parent = None
+        current = self.root
+        if current is None:
+            self.root = new_node
+            return
+        while current:
+            prev = current
+            if new_node.key < current.key:
+                    current = current.left
+            else:
+                current = current.right
+        new_node.parent = prev
+        if prev.key < new_node.key:
+            prev.right = new_node
+        else:
+            prev.left = new_node
+    
+
+    
 class BinarySearchTree:
     def __init__(self):
         self.root = None
@@ -124,7 +225,7 @@ class BinarySearchTree:
         cur = self.root
         parent = None
         # find key
-        while True
+        while True:
            if current is None:
                 return False
             if current.key ==key:
