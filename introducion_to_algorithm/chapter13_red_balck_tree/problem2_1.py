@@ -27,6 +27,9 @@ class Node:
 class Tree:
     head: Node = attr.ib()
 
+    def left_rotate():
+        NotImplemented
+
     def right_rotate(self, partial_tree_root Node) -> None:
 
         if partial_tree_root.right is None:
@@ -61,14 +64,27 @@ class Tree:
             if parent is None:
                 self.head = new_node
             elif left:
-                parent.left=new_node
+                parent.left = new_node
             else:
-                parent.right=new_node
-            new_node.right=None
-            new_node.left=None
-            new_node.color=Color.RED
-            #rb_insertFIXUP
+                parent.right = new_node
+            new_node.right = None
+            new_node.left = None
+            new_node.color = Color.RED
+            # rb_insertFIXUP
             NotImplementedError
 
-    def rb_insert_fixup(self):
-        print()
+    def rb_insert_fixup(self, new_node: Node):
+        current = new_node
+        while current.parent.color == Color.RED:
+            # parent is left child
+            if current.parnet = current.parent.parent.left:
+                uncle = current.parent.parent.right
+                if uncle.color == Color.RED:
+                    current.parnet.color = Color.BLACK
+                    uncle.color = Color.BLACK
+                    current.parent.parent.color = Color.RED
+                    current = current.parent.parent
+                else:
+                    if current == current.parent.right:
+                        current = current.parent
+                        NotImplemented
