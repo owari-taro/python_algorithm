@@ -1,19 +1,18 @@
 from typing import Any, List
 
 
-class Node:
-    def __init__(self, value: Any, index: int):
-        self.index = index
-        self.value = value
+# class Node:
+#   def __init__(self, value: Any, index: int):
+#      self.index = index
+#     self.value = value
 
-    def parent(self):
-        return int(self.index/2)
+# def parent(self):
+#   return int(self.index/2)
 
-    def left(self):
-        return 2*self.index
-
-    def right(self):
-        return 2*self.index+1
+# def left(self):
+#   return 2*self.index
+# def right(self):
+#   return 2*self.index+1
 
 
 def left(i: int) -> int:
@@ -101,10 +100,32 @@ def min_heaptify(heap: Heap, i: int) -> None:
 
 
 def build_max_heap(heap: Heap) -> None:
-    
+
     size = heap.size()
-    #start with the parent having the largest index
+
+    # start with the parent having the largest index
     for i in range(int(size/2), 1, -1):
         max_heaptify(heap, i)
 
 
+def heap_maximum(heap: heap) -> float:
+    return heap.data[0]
+
+
+def heap_extract_max(heap: Heap) -> int:
+    if heap.size() < 1:
+        raise ValueError()
+    max_ = heap.data[0]
+    heap.data[0] = heap.data[heap.size()-1]
+    # remove last element
+    heap.data = heap.data[:-1]
+    max_heaptify(heap, 0)
+
+
+def heap_increase_key(heap: Heap, key: int, i: int):
+    if key < heap.data[i]:
+        raise ValueError
+    heap.data[i] = key
+    while i > 0 and heap.data[parent(i)] < heap.data[i]:
+        heap.data[parent(i)], heap.data[i] = heap.data[i], heap.data[parent(i)]
+        i = parent(i)
