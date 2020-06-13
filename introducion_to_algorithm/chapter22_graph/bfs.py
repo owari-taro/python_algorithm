@@ -25,12 +25,29 @@ class Vertex:
     def __eq__(self, other: Vertex):
         return self.id_ == other.id_
 
+
 @attr.s
 class Graph:
-    #def __init__(self, root, vertex_list: List[List[Vertex]]):
-        root:Vertex = attr.ib()
+        root: Vertex = attr.ib()
         vertex_list: List[Vertex] = attr.ib()
 
+    def print_path(self,start:Vertex,end:Vertex)->None:
+        """[summary]
+        print all the nodes on the shortest path from start to end
+        Parameters
+        ----------
+        start : Vertex
+            [description]
+        end : Vertex
+            [description]
+        """        
+        if start==end:
+            print(start)
+        elif end.parrent is None:
+            print("there is no route to end from start")
+        else:
+            self.print_path(start,end.parent)
+            print(end)
 
 def bfs(graph: Graph) -> Graph:
     # initialize
