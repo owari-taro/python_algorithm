@@ -17,13 +17,12 @@ def bottom_up_cut_rod(price: List, size: int):
     [type]
         [description]
     """
-    import time
     # when size is 0,value is 0
     memo = [0]
-    for i in range(size):
+    for length in range(1, size+1):
         current = -math.inf
-        for j in range(i+1):
-            current = max(current,  price[j+1]+memo[i-j])
+        for cut_point in range(length+1):
+            current = max(current,  price[cut_point]+memo[length-cut_point])
         memo.append(current)
     print(memo)
     return memo[size]
