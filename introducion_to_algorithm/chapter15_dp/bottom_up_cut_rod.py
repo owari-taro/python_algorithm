@@ -47,7 +47,7 @@ def bottom_up_cut_rod_with_cost(price: List, size: int, cost: int):
     memo = [0]
     for length in range(1, size+1):
         current = -math.inf
-        for cut_point in range(1,length+1)
+        for cut_point in range(1, length+1)
            if length == cut_point:
                 current = max(
                     current,  price[cut_point]+memo[0])
