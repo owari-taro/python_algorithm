@@ -1,5 +1,6 @@
 import attr
 from typing import List
+from __future__ import annotations
 
 
 @attr.s
@@ -27,7 +28,7 @@ class Knapsack:
         return self.size >= self.weight+item.weight
 
     @classmethod
-    def greedy(cls, items: List[Item], size_limit: flaot):
+    def greedy(cls, items: List[Item], size_limit: float) - >Knapsack:
         sorted_items: List[Item] = sorted(
             items, key=lambda: x.price/x.weight, reverse=True)
         knapsack = cls(size_limit)
