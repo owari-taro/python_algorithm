@@ -1,6 +1,7 @@
 import attr
 from typing import List
 from __future__ import annotations
+import itertools
 
 
 @attr.s
@@ -38,3 +39,19 @@ class Knapsack:
             except ValueError:
                 continue
         return knapsack
+
+    @classmethod
+    def brute_force(cls, items: List[Item], size_limit: int) -> Knapsack:
+        max: Knapsack = None
+        for pattern in itertools.product((0, 1), repeat=len(items)):
+            tmp = cls(size_limit)
+            try:
+                for i, value in enumarate(pattern):
+                    if value:
+                        tmp.append(items[i])
+                if max is None or max.price < tmp.price:
+                    max = tmp
+
+            except ValueError:
+                continue
+        return max
