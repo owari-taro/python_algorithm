@@ -49,7 +49,7 @@ class Knapsack:
                 for i, value in enumarate(pattern):
                     if value:
                         tmp.append(items[i])
-                if max is None or max.price < tmp.price:
+                if max is None or max.value < tmp.value:
                     max = tmp
 
             except ValueError:
