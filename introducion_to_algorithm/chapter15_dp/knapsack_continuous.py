@@ -18,12 +18,15 @@ class Knapsack:
     items: List = attr.ib(default=[])
 
     def append(self, item: Item) -> None:
-        percent = self.calc_room(item)
-        if percent is 0:
+        # $percent = self.calc_room(item)
+        if self.has_room_for(item):
             raise ValueError("theere isnt enough space for the item")
         self.items.append(item)
         self.weight += precent*item.weight
         self.value += percent*item.value
+
+    def has_room_for(self, item):
+        return self.size >= self.weight+item.weight
 
     def calc_room(self, item) -> float:
         room = self.size-self.weight
@@ -35,19 +38,20 @@ class Knapsack:
             return item.weight/room
 
     @classmethod
-    def div_knapsack(cls, items: List[Item], size_limit: float):
+    def div_knapsack(cls, items: List[Item], size_limit: float)->Knapsack:
         #　単位重さあたりの価値で品物を並び替える。
         sorted_item_list = sorted(
             items, key=lambda x: x.price/x.weight, reverse=True)
         knapsack = cls(size_limit)
-        for v in sorted_item_list:
+        for item in sorted_item_list:
             try:
-                # TODO:fix append to original version
-                knapsack.append(v)
+                knapsack.append(item)
             except ValueError:
+                # if error happend, add some portion of the item
+                room = knapsack.size - knapsack.weight
+                value = v.price * (room / v.weight)
+                virtual_item = Item(-1, room, value)
+                knapsack.append(virtual_item)
                 break
-        room = knapsack.size - knapsack.weight
-        p = v.price * (room / v.weight)
-        virtual_item = Item(-1, w, p)
-        knapsack.append(virtual_item)
+
         return knapsack
