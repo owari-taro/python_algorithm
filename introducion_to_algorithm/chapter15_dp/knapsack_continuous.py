@@ -38,7 +38,7 @@ class Knapsack:
             return item.weight/room
 
     @classmethod
-    def div_knapsack(cls, items: List[Item], size_limit: float)->Knapsack:
+    def div_knapsack(cls, items: List[Item], size_limit: float) -> Knapsack:
         #　単位重さあたりの価値で品物を並び替える。
         sorted_item_list = sorted(
             items, key=lambda x: x.price/x.weight, reverse=True)
@@ -49,7 +49,7 @@ class Knapsack:
             except ValueError:
                 # if error happend, add some portion of the item
                 room = knapsack.size - knapsack.weight
-                value = v.price * (room / v.weight)
+                value = item.price * (room / item.weight)
                 virtual_item = Item(-1, room, value)
                 knapsack.append(virtual_item)
                 break
