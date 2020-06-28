@@ -16,7 +16,6 @@ def recursive_matrix_chain(p: List, st, ed):
     ed : [type]
         [description]
     """
-    memo = [[None]*]
     if st == ed:
         return 0
     tmp = math.inf
