@@ -23,6 +23,6 @@ def recursive_matrix_chain(p: List, st, ed):
     for i in range(st, ed):
         current = recursive_matrix_chain(
             p, st, i)+recursive_matrix_chain(p, i+1, ed)+p[st-1]*p[i]*p[ed]
-        if current < tmp:
-            tmp = current
+        tmp = min(current, tmp)
+
     return current
