@@ -24,4 +24,4 @@ def recursive_matrix_chain(p: List, st, ed):
             p, st, i)+recursive_matrix_chain(p, i+1, ed)+p[st-1]*p[i]*p[ed]
         tmp = min(current, tmp)
 
-    return current
+    return tmp
