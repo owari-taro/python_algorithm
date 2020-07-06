@@ -29,7 +29,8 @@ def recursive_activity_selector(elements: List[Element], k: int,
         [description]
     """
     #sorted(user_objs, key=lambda u: u.age)
-    elements = sorted(elements, key=lambda ele: ele.finished_at)
+    if k == 0:
+        elements = sorted(elements, key=lambda ele: ele.finished_at)
     m = k+1
     while m <= n and elements[m].started_at < elements[k].finished_at:
         m += 1
