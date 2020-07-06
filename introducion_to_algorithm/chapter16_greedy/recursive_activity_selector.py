@@ -10,8 +10,24 @@ class Element:
     finished_at: datetime = attr.ib()
 
 
-def recusive_activity_selector(elements: List[Element], k: int, n: int)\
-        -> Set[Element]:
+def recursive_activity_selector(elements: List[Element], k: int,
+                                n: int) -> Set[Element]:
+    """[summary]
+
+    Parameters
+    ----------
+    elements : List[Element]
+        [description]
+    k : int
+        [description]
+    n : int
+        [description]
+
+    Returns
+    -------
+    Set[Element]
+        [description]
+    """
     #sorted(user_objs, key=lambda u: u.age)
     elements = sorted(elements, key=lambda ele: ele.finished_at)
     m = k+1
@@ -19,7 +35,7 @@ def recusive_activity_selector(elements: List[Element], k: int, n: int)\
         m += 1
     if m <= n:
         answer = set()
-        answer.union(recusive_activity_selector(elements, m, n))
+        answer.union(recursive_activity_selector(elements, m, n))
         answer.add(elements[m])
         return answer
     else:
