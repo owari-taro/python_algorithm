@@ -35,5 +35,9 @@ def dp_pow(x: float, n: int)->float:
 if __name__ == "__main__":
     import time
     st = time.time()
-    print(normal_pow(4, 1000000000))
+    normal_pow(4, 100000)
     print(time.time()-st)
+    st=time.time()
+    dp_pow(4,100000)
+    print(time.time()-st)
+    #500 times faster than normal pow
