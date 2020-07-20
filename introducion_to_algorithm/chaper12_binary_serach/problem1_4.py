@@ -1,6 +1,29 @@
 from binary_search_tree import Node
 
 
+
+
+def pre_order_tree_walk_simple(node:NOde)->None:
+    if node:
+        print(node.value)
+        pre_order_tree_walk_simple(node.left)
+        pre_order_tree_walk_simple(node.right)
+
+
+def post_order_tree_walk_simple(node:Node)->None:
+    """
+    each node's is printed after both childs are checked 
+
+    Parameters
+    ----------
+    node : Node
+        [description]
+    """    
+    if node:
+        post_order_tree_walk_simple(node.left)
+        post_order_tree_walk_simple(node.right)
+        print(node.value)
+
 def preorder_tree_walk(node: Node) -> Node:
     """
     each nodes' parent are printed bfore their children

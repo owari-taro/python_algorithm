@@ -20,7 +20,7 @@ class Node:
 def inorder_tree_work(node:Node)->Node:
     """
     print tree's node's value by ascending order.
-
+    it takes (O(n)) time to print all nodess
 
     Parameters
     ----------
