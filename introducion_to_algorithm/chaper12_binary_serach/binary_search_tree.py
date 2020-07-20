@@ -17,11 +17,27 @@ class Node:
         return self.key == other.key  # and self.value == other.value
 
 
-def inorder_tree_work(x: Node) -> None:
-    if x:
-        inorder_tree_work(x.left)
-        print(x.key)
-        inorder_tree_work(x.right)
+def inorder_tree_work(node:Node)->Node:
+    """
+    print tree's node's value by ascending order.
+
+
+    Parameters
+    ----------
+    node : Node
+        [description]
+
+    Returns
+    -------]
+    Node
+        [description]
+    """    
+    if node:
+        inorder_tree_work(node.left)
+        print(node.key)
+        inorder_tree_work(node.right)
+
+
 
 
 def tree_search(node: Node, key: Any) -> Node:
