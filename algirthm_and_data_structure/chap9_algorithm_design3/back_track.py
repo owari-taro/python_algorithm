@@ -1,7 +1,22 @@
 from typing import List, Union
 
 
-def backtrack(x: List[Union[float, int]], s: Union[float, int]) -> None:
+def backtrack(x: List[Union[float, int]], s: Union[float, int]) -> bool:
+    """
+    return True if there is an answer ,else return False
+
+    Parameters
+    ----------
+    x : List[Union[float, int]]
+        [description]
+    s : Union[float, int]
+        [description]
+
+    Returns
+    -------
+    bool
+        [description]
+    """    
     n = len(x)
     y = [0]*n
 
