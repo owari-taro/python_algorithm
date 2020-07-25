@@ -30,7 +30,7 @@ def branch_and_bound(x: List[float], s: float) -> bool:
 
         if level == 0:
             print("there is no answer!!!")
-
+        subset_sum(level=0)
 
 if __name__ == "__main__":
     print("")
