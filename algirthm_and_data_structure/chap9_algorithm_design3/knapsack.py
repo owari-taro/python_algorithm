@@ -30,7 +30,20 @@ class Knapsack:
         self.items = []
 
     @property
-    def rest(self):
+    def space(self) -> float:
+        """
+        return space left for another item,if there is no space raise value Error
+
+        Returns
+        -------
+        float
+            [description]
+
+        Raises
+        ------
+        ValueError
+            [description]
+        """
         rest = self.weight_limit-self.weight
         if reset > 0:
             return rest
@@ -39,7 +52,7 @@ class Knapsack:
 
 def knapsack(items: List[Item], weight_limit: float):
     n = len(items)
-    knapsack = Knapsack()
+    knapsack = Knapsack(weight_limit)
     current_max = -math.inf
     current_items = []
 
@@ -48,12 +61,12 @@ def knapsack(items: List[Item], weight_limit: float):
             if knapsack.weight <= weight_limit and knapasack.value > current_max:
                 current_max = knapsack.value
                 current_items = knapsack.items
-                knapsack.reset()
+                #knapsack.reset()
         else:
             if knapsack.weight == weight_limit and knapsack.value > current_max:
                 current_max = knapsack.value
             if knapsack.weight < weight_limit and \
-                    (knapsack.rest*items[level].unit_value > current_max):
+                    (knapsack.room*items[level].unit_value > current_max):
                 item = items[level]
                 bb_knapsack(level+1)
                 knapsack.items.append(item)
