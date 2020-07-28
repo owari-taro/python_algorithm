@@ -10,13 +10,19 @@ class Item:
     unit_value: float = attr.ib()
     # TODO:write initialize method
 
+    def __attrs_post_init__(self):
+        self.unit_value = self.value/self.weight
+
 
 @attr.s
 class Knapsack:
     weight_limit: float = attr.ib()
     weight: float = attr.ib(default=0)
     value: float = attr.ib(default=0)
-    items: List[Item] = attr.ib(init=False)
+    items: List[Item] = attr.ib(default=[])
+
+    def __attrs_post_init__(self):
+        self.items = []
 
     def reset(self) -> None:
         self.weight = 0
