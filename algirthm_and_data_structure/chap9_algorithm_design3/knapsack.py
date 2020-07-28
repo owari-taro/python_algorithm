@@ -6,7 +6,7 @@ import math
 @attr.s
 class Item:
     weight: float = attr.ib()
-    value: float = atttr.ib()
+    value: float = attr.ib()
     unit_value: float = attr.ib()
     # TODO:write initialize method
 
@@ -56,12 +56,14 @@ def knapsack(items: List[Item], weight_limit: float):
     current_max = -math.inf
     current_items = []
 
-    def bb_knapsack(level: int):
+    def bb_knapsack(level: int) -> None:
+        nonlocal current_items
+        nonlocal current_max
         if level >= n:
             if knapsack.weight <= weight_limit and knapasack.value > current_max:
                 current_max = knapsack.value
                 current_items = knapsack.items
-                #knapsack.reset()
+                # knapsack.reset()
         else:
             if knapsack.weight == weight_limit and knapsack.value > current_max:
                 current_max = knapsack.value
