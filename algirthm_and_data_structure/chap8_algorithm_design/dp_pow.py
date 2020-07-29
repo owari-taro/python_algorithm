@@ -1,11 +1,26 @@
+from functools import wraps
+import time
+from typing import Callable
 
+def elapsed_time(f:Callable):
+    @wraps
+    def wrapper(*args,**kargs):
+        st=time.time()
+        v=f(*args,**kargs)
+        print(f"{f.__name__} {time.time()-st}")
+        return v
+    return wrapper
+
+
+
+@elapsed_time
 def normal_pow(x: float, n: int) -> float:
     p = x
     for _ in range(n):
         p *= x
     return p
 
-
+@elapsed_time
 def dp_pow(x: float, n: int)->float:
     """
     calculate exponationation of x with dynamic programing ,which require O(log(n)) time
