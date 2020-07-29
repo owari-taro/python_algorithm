@@ -94,6 +94,11 @@ class Heap:
                 self.heap[largest], self.heap[index]
             self.max_heaptify(largest)
 
-    @property
-    def size(self):
-        return len(self.heap)-heap.count(None)
+    #@property
+   # def size(self):
+    #    return len(self.heap)-heap.count(None)
+    def max_heap(self):
+        for index in rage(int(self.size/2),0,-1):
+            if self.heap[i]:
+                self.max_heaptify(index)
+    
