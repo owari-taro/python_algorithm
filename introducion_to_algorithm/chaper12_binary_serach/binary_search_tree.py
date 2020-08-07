@@ -17,27 +17,13 @@ class Node:
         return self.key == other.key  # and self.value == other.value
 
 
-def inorder_tree_work(node:Node)->Node:
-    """
-    print tree's node's value by ascending order.
-    it takes (O(n)) time to print all nodess
-
-    Parameters
-    ----------
-    node : Node
-        [description]
-
-    Returns
-    -------]
-    Node
-        [description]
-    """    
+def inorder_tree_walk(node: Node) -> None:
+    # if none do  nothing
     if node:
-        inorder_tree_work(node.left)
+        # prioritizing left node ,which is smaller than node.value
+        inorder_tree_walk(node.left)
         print(node.key)
-        inorder_tree_work(node.right)
-
-
+        inorder_tree_walk(node.right)
 
 
 def tree_search(node: Node, key: Any) -> Node:
@@ -50,6 +36,7 @@ def tree_search(node: Node, key: Any) -> Node:
 
 
 def iterative_tree_search(node: Node, key) -> Node:
+
     while node and node.key != key:
         if node.key < key:
             node = node.right
@@ -119,7 +106,8 @@ def tree_successor(node: Node):
 @attr.s
 class Tree:
     root: Node = attr.ib()
-    def transplant(self,deleted_node:Node,moved_node:Node):
+
+    def transplant(self, deleted_node: Node, moved_node: Node):
         """[summary]
 
         Parameters
@@ -128,18 +116,17 @@ class Tree:
             [description]
         moved_node : Node
             [description]
-        """         
+        """
         if deleted_node.parent is None:
-            self.root=moved_node
-        elif deleted_node==deleted_node.parent.left:
-            deleted_node.parent.left=moved_node
+            self.root = moved_node
+        elif deleted_node == deleted_node.parent.left:
+            deleted_node.parent.left = moved_node
         else:
-            deleted_node.parent.right=moved_node
+            deleted_node.parent.right = moved_node
 
-    def delete(self,node:Node)->Node:
+    def delete(self, node: Node) -> Node:
         if node.left:
             NotImplemented
-        
 
     def insert(self, new_node: Any) -> None:
         parent = None
@@ -150,7 +137,7 @@ class Tree:
         while current:
             prev = current
             if new_node.key < current.key:
-                    current = current.left
+                current = current.left
             else:
                 current = current.right
         new_node.parent = prev
@@ -158,9 +145,8 @@ class Tree:
             prev.right = new_node
         else:
             prev.left = new_node
-    
 
-    
+
 class BinarySearchTree:
     def __init__(self):
         self.root = None
@@ -214,9 +200,22 @@ class BinarySearchTree:
             tmp = tmp.right
         return tmp
 
-    def search(self, k):
+    def search(self, key: Any) -> Node:
+        """
+        search node with key ,if nothing return None
+        it takes O(log(h)) time
+        Parameters
+        ----------
+        key : Any
+            [description]
+
+        Returns
+        -------
+        Node
+            [description]
+        """
         def search_helper(node: Node, key: str) -> Node:
-            if node.key == k or node is None:
+            if node.key == key or node is None:
                 return node
             if node.key < key:
                 search_helper(node.right, key)
@@ -242,11 +241,11 @@ class BinarySearchTree:
         parent = None
         # find key
         while True:
-           if current is None:
+            if current is None:
                 return False
-            if current.key ==key:
+            if current.key == key:
                 break
-            elif key <parent.key:
+            elif key < parent.key:
                 is_left = True
                 current = current.left
             else:
@@ -255,6 +254,5 @@ class BinarySearchTree:
 
         # check
         if current.left is None:
-            if current ==self.root:
-                
-
+            if current == self.root:
+                NotImplemented
