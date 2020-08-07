@@ -1,18 +1,28 @@
 from binary_search_tree import Node, tree_maximum
 
 
-def treep predecessor(node: Node) -> Node:
+
+def tree_predecessor(node: Node)->Node:
     """
-    find the max node from nodes smaller than the inupt node
+    find max node from nodes smaller than input node
+
+    Parameters
+    ----------
+    node : Node
+        [description]
+
     Returns
     -------
-    [type]
+    Node
         [description]
-    """    
-    if node.left:
-        return tree_maximum(node.left)
+    """
+    if current := node.left:
+        # extract subtree maximum
+        while current.right:
+            current = current.right
+        return current
     parent = node.parent
-    while parent and parent.left == node:
+    while parent and node == parent.left:
         node = parent
-        parent = parent.parent
+        parent = parnet.parent
     return parent
