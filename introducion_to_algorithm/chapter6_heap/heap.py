@@ -98,7 +98,7 @@ class Heap:
    # def size(self):
     #    return len(self.heap)-heap.count(None)
     def max_heap(self):
-        for index in rage(int(self.size/2),0,-1):
+        for index in range(int(self.size/2),0,-1):
             if self.heap[i]:
                 self.max_heaptify(index)
     

@@ -1,16 +1,16 @@
 from functools import wraps
 import time
-from typing import Callable
+from typing import Callable, Tuple, Dict
 
-def elapsed_time(f:Callable):
+
+def elapsed_time(f: Callable):
     @wraps
-    def wrapper(*args,**kargs):
-        st=time.time()
-        v=f(*args,**kargs)
+    def wrapper(*args, **kargs):
+        st = time.time()
+        v = f(*args, **kargs)
         print(f"{f.__name__} {time.time()-st}")
         return v
     return wrapper
-
 
 
 @elapsed_time
@@ -20,8 +20,9 @@ def normal_pow(x: float, n: int) -> float:
         p *= x
     return p
 
+
 @elapsed_time
-def dp_pow(x: float, n: int)->float:
+def dp_pow(x: float, n: int) -> float:
     """
     calculate exponationation of x with dynamic programing ,which require O(log(n)) time
     Parameters
@@ -35,7 +36,7 @@ def dp_pow(x: float, n: int)->float:
     -------
     float
         [description]
-    """    
+    """
 
     if n == 1:
         return x
@@ -52,7 +53,7 @@ if __name__ == "__main__":
     st = time.time()
     normal_pow(4, 100000)
     print(time.time()-st)
-    st=time.time()
-    dp_pow(4,100000)
+    st = time.time()
+    dp_pow(4, 100000)
     print(time.time()-st)
-    #500 times faster than normal pow
+    # 500 times faster than normal pow

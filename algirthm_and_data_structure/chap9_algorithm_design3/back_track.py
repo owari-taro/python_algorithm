@@ -3,7 +3,7 @@ from typing import List, Union
 
 def backtrack(x: List[Union[float, int]], s: Union[float, int]) -> bool:
     """
-    return True if there is an answer ,else return False
+    return True if there is an answer ,else return Falsez
 
     Parameters
     ----------

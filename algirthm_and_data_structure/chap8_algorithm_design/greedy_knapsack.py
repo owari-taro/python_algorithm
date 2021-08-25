@@ -41,3 +41,4 @@ class GreedyKnapsack:
         else:
             self.weight += room
             self.value += item.value*(room/item.weight)
+/

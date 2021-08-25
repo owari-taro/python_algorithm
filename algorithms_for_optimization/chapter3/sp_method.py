@@ -28,7 +28,7 @@ class Point:
             [description]
         eps : float
             [description]
-        delat : float, optional
+        delat : float, optionalxz
             [description], by default 0.01
         """        
         m=(a+b)/2
